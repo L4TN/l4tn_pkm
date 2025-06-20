@@ -1,0 +1,79 @@
+Correções Consolidação: Feedback do Gabriel Bittecounrt em relação aos pontos do Backlog disponibilizados em UAT.
+	Mandato ()
+		- Colunas Mandato 
+		- Mandato incorreto (02/06)
+	OutSystems ()
+		- Outsystems Carteiras 
+		- Alinhar botões outsystems OK 
+	Bug	PRD ()
+	- Nome Taxa incorreto (Rever vídeo)
+
+
+
+
+
+
+	Ajustes posteriores:
+	- Guia nova no Excel Hash Local
+	- Data de Compra de LCD não está aparecendo
+
+
+
+
+
+
+
+
+
+
+
+
+TASK Outsystems Carteiras
+Prisma_Service\Core\Application\BSN\Consolidacao\PortfolioBsn.cs
+public async Task<int> CreateOrUpdateWalletAsync(WalletRequest request, CancellationToken cancellationToken = default)
+CreateOrUpdateWalletAsync()
+	Linha 3435
+	UpdateWalletsRequestApiCMD
+
+Se carteira já existe, exibe config da carteira
+Se não existe, cria uma com base na request
+
+Fluxo de Testes
+	Carteita Testes Existe
+	Carteira Testes Nova
+
+Perfis Carteiras
+	Nova Carteira Onshore Nao Isenta
+	Nova Carteira Onshore Isenta
+	Nova Carteira Offshore
+	
+	Campos travados
+		perfil_carteira
+		perfil_tributario
+		calendario
+		unidade
+		
+	Campos não travados
+		cadastro_automatico_proventos
+		cadastro_automatico_vencimentos
+		impede_mudancas
+		discrimina_caixa
+		data_acompanhamento
+		gerente
+		disclaimer
+		
+		
+		
+		
+	
+
+
+
+
+
+
+
+
+
+
+
