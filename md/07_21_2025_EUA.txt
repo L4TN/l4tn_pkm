@@ -1,0 +1,17 @@
+Suporte Consolidação 
+	sem taxa	21141	CRI BROOKFIELD - CDI + 1.15% - 19/07/2027	22G0282361
+	sem taxa	15645	CRA NATURAL ONE - CDI + 2% - 08/05/2026	CRA023001UP
+	com taxa	8465	CRI GLOBO - IPCA + 6.95% - 07/01/2037	22A0695877
+
+idfilaProcessamento  765145
+
+Email Consolidação
+	Bug Tela de Usuario Extenro upload e download
+	Pegar export
+	
+APIs 
+
+Projeto democotas
+	
+	
+	

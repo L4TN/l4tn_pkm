@@ -1,0 +1,6 @@
+Entender como o AWS SAM funciona, e criar estrutura CI/CD
+
+Tonico
+ - Adaptar Lambda para usar Token Huggy V3
+ 
+ 

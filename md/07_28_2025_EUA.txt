@@ -1,0 +1,39 @@
+Suportes Consolidação
+ - Vínculo de Proventos feito pelo Mak para adaptar falta de Vínculo com a ComDinheiro teve um caso que não vínculou: IdFilaProcessamento 804344, ativo "Perfin Voyager FI Em Participa unica: Amortização a liquidar em 01/07/2025" 
+ - Saldo Relatório
+
+ Tasks do dia:
+ - Adaptar pontos do RV (se quiser ver o commit, de antes mas vai demorar pra achar esse commit: Implementar flag para desativar essa quebra por Estratégia e voltar ao default que havia anteriormente
+	-> ddda89216fe703283a41edb6eea4e8261492f0e5 Commit ddda8921: Ajuste da identificação das classes e subclasses)
+	 -> Identifiquei prováveis os pontos que foram adicionados nessa lógica
+	 -> // TODO: Implementar Flag FlIsByEstrategiaAtivo 
+	
+	Esse trecho tive dúvida:
+	                if (bi.MasterBook != null && bi.MasterBook.Equals("Renda Variável"))
+                {
+                    estrategiaAtivo = (await GetTbEstrategiaAtivo(cancellationToken)).SingleOrDefault(c => c.DescEstrategiaAtivo.ToUpper().Trim().Equals(bookToFind.ToUpper().Trim()));
+                }
+	
+	Criar Feature Flag (CustomOptionsDomainService)
+	
+ 
+ - View de Posição Manual e Liberação (Tela de Posição Manual)
+ - Começar a estudar motor de PUs para Taxas de LCIs LCAs, Compromissadas, CRAs e CRIs
+ - Escopo de AI
+ 
+
+ Tonico:
+  - Criar uma proteção contra looping no Supervisor
+  - Implementar feat de Atendimento Humano/AI baseado no departamentos atuais
+  - Adicionar msgs do Atendente Humano ao Contexto da AI
+ 
+ Bombeiros:
+	- Colocar o Prompt na AI
+	
+	- Criar um enviador de mensagens automático
+		- 
+	
+	- Linkar com o Chatwoot
+ 
+ 
+ 
