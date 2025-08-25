@@ -222,8 +222,6 @@ Micro-Functions (20):      20 cold starts = ~40s
 Eu tenho chatbot de atendimento ao cliente chamado Tonico que funciona como backend serverless em Python usando AWS Lambda, integrando Bedrock Agent para IA, Huggy Platform para webhooks, DynamoDB e Supabase para dados. O código atual está numa estrutura básica funcionando em debug local via VSCode (sem precisar SAM), mas eu queria criar uma pipeline CI/CD profissional e reorganizar a arquitetura seguindo convenções Python. Durante a conversa com o Claude 4 Sonnet ele me disse: Analisamos opções entre micro-functions vs domain-based vs monolithic Lambda, onde recomendei começar com monolithic Lambda (1 função com router interno) pela simplicidade do seu contexto atual (time pequeno, MVP phase), evoluindo futuramente para domain-based. Para deploy, escolhemos Serverless Framework + GitHub Actions ao invés de AWS SAM (muito verboso) ou AWS nativo (complexo), criando uma estrutura completa tonico-chat-service-backend/ com 86 arquivos organizados seguindo convenções Python padrão (src/, tests/, docs/, etc.). A validação com estado da arte 2024 confirmou que suas decisões estão 98% alinhadas com best practices da indústria para chatbots AI serverless, sendo inclusive inovador em alguns aspectos como controle de duplicatas e integração multi-plataforma.
 
 
-
-
 https://chatgpt.com/share/688eceac-8d68-8006-9ca6-64d6c71167c6
 pyenv
 nvm
