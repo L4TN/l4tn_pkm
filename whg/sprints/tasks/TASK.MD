@@ -1,8 +1,7 @@
-# 19 de Agosto de 2025
-
 # Documento de Especificação
-**Especificação:** "Anexo 1: RE_ Desenvolvimento - cadastro e PLD.msg
+**Especificação:** "Anexo 1 E-mail: RE_ Desenvolvimento - cadastro e PLD.msg
 **Detalhes:** 
+
 Em relação ao Cadastro de Pessoas de contas Ativas, e ao tópico de Prevenção à Lavagem de Dinheiro da área de compliance:
 
     1 - O usuário solicitou a implementação de uma funcionalidade de teste de "Regras de Acompanhamento" que consistentem em alguns critérios/regras. 
