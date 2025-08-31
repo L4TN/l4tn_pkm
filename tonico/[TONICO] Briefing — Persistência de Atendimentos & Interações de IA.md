@@ -14,7 +14,7 @@ Você vai gravar dados em **duas tabelas**:
 
 ## **O que salvar e como**
 
-### **1\) public.attendment** 
+### **1\) public.attendment**
 
 #### Campos essenciais (sempre enviar)
 
@@ -34,7 +34,7 @@ Você vai gravar dados em **duas tabelas**:
 
 * status (public.attendment\_status) — ex.: 'active', 'ended' .
 
-### **Boas práticas & validações** 
+### **Boas práticas & validações**
 
 * Quando for enviar encerramento de chat atualizar status='ended'.
 
@@ -85,35 +85,35 @@ Esta tabela armazena **três tipos** de interação (campo kind):
 * public.ai\_interaction\_status: 'ok' | 'error' | 'partial' (status padronizado do evento)
 
 * public.ai\_action\_type:
-
+  
    REQUEUE | ARCHIVE\_CONVERSATION | FINISH\_CONVERSATION | TRANSFER\_CONVERSATION | CHANGE\_DEPARTMENT | CHANGE\_WORKFLOW | CHANGE\_WORKFLOW\_STAGE | CHANGE\_TABULATION | ADD\_TAG | REMOVE\_TAG | ADD\_NOTE | SEND\_FILE | SEND\_IMAGE | SEND\_AUDIO | UPDATE\_CONTACT | TRANSFER\_TO\_FLOW
 
 **Campos comuns (sempre que possível)**
 
 * **Chaves e dimensões** (preencher sempre que possível):
-
+  
   * attendment\_id (uuid) — **sempre**
-
+  
   * agent\_id (uuid) — agente “atuante” no evento
-
+  
   * agent\_version\_id (uuid)
-
+  
   * workspace\_id (uuid)
-
+  
   * company\_id (text)
-
+  
   * departament\_id (text)
-
+  
   * channel\_id (text)
-
+  
   * chat\_id (text)
-
+  
   * kind (enum) — **obrigatório** (default 'model\_response')
-
+  
   * status\_std (enum) — 'ok'|'error'|'partial'
-
+  
   * success (bool) — redundante com status\_std, mas útil
-
+  
   * metadata (jsonb) — extras do evento (sem PII sensível)
 
 **Campos de latência**
@@ -212,27 +212,26 @@ Esta tabela armazena **três tipos** de interação (campo kind):
 }
 ```
 
-## **O que não fazer** 
+## **O que não fazer**
 
 * Não enviar started\_at e ended\_at. Isso vai ser preenchido pelo banco.
 
 * Não “recriar” atendimentos para trocar agente/departamento. Use **UPDATE** no mesmo attendment.
 
-* Quando enviar `requested_at` e `responded_at` mandar horas locais sem timezone. Use UTC.
+* Quando enviar `requested_at` e `responded_at` mandar horas locais sem timezone. Use UTC.--
 
 ## **Sequência típica (happy path)**
 
 1. **Cria** attendment (status='active').
 
 2. Durante a conversa:
-
+   
    * grava **model\_response** sempre que a IA responder.
-
+   
    * grava **action** quando a IA executar algo (ex.: TRANSFER\_CONVERSATION).
-
+   
    * grava **tool\_call** quando a IA chamar integração externa.
 
 3. Se o atendimento mudar de agente/departamento, **UPDATE** no attendment.
 
 4. **Encerra** attendment (status='ended').
-
