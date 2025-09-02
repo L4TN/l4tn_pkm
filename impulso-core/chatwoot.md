@@ -2,7 +2,6 @@ Minha empresa é a ImpulsoCore
 
 E fizemos um fork  do projeto Chatwoot do Github, vamos personalizar o sistema para nossas necessidades
 
-
 Passo a passo para subir imagem do chatwoot docker
 Criar conta no Docker hub
 npm config set registry http://registry.npmjs.org/
