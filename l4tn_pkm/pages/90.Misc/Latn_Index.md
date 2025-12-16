@@ -1,0 +1,54 @@
+# Mapa de Conteúdo Principal
+- ## Descrição
+  Mapa de Conteúdo (MOC) principal que organiza todo o sistema de conhecimento pessoal, dividido em áreas da vida e suas respectivas subáreas.
+-
+- ## Áreas Principais
+	- ### 10_Work
+		- **Descrição:** Área da vida relacionado ao trabalho e dedicação. (Índice em [[10_Work_Index]] )
+		- #### Subáreas
+		- [[11_Work_Strategy_Index]]
+		- [[12_Work_Tech_Index]]
+		- [[13_Work_Projects_Index]]
+		- [[14_Work_Sprints_Index]]
+		- #### Ideias relacionadas
+		- #### Zettels relacionados
+		  
+		  ---
+	- ### 20_Life
+	  collapsed:: true
+		- **Descrição:** Área da vida relacionado ao desenvolvimento pessoal e bem-estar. (Índice em [[20_Life_Index]] )
+		- #### Subáreas
+		- [[21_Life_Minimalism_Index]]
+		- [[22_Life_Survivalism_Index]]
+		- [[23_Life_Spirituality_Index]]
+		- [[24_Life_HealthNatural_Index]]
+		- [[25_Life_MilitaryFitness_Index]]
+		- [[26_Life_LogicAndOrder_Index]]
+		- [[27_Life_Nature_Index]]
+		- #### Ideias relacionadas
+		- #### Zettels relacionados
+		  
+		  ---
+	- ### 30_Relationships
+	  collapsed:: true
+		- **Descrição:** Área da vida relacionado aos relacionamentos interpessoais. (Índice em [[30_Relationships_Index]] )
+		- #### Subáreas
+		- [[31_Relationships_Partner_Index]]
+		- [[32_Relationships_Family_Index]]
+		- [[33_Relationships_Friends_Index]]
+		- [[34_Relationships_Allies_Index]]
+		- #### Ideias relacionadas
+		- #### Zettels relacionados
+		- ---
+	- ### 40_Studies
+	  collapsed:: true
+		- **Descrição:** Área da vida relacionado ao aprendizado e desenvolvimento intelectual. (Índice em [[40_Studies_Index]] )
+		- #### Subáreas
+		- [[41_Studies_Mathematics_Index]]
+		- [[42_Studies_Logic_Index]]
+		- [[43_Studies_Psychology_Index]]
+		- [[44_Studies_Coaching_Index]]
+		- [[45_Studies_AI_Index]]
+		- [[46_Studies_Business_Index]]
+		- #### Ideias relacionadas
+		- #### Zettels relacionados

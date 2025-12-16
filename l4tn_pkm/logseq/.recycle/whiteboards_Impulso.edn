@@ -1,0 +1,133 @@
+{:blocks (
+{:block/created-at 1761256790005
+:block/properties 
+{:ls-type :whiteboard-shape
+:logseq.tldraw.shape 
+{:blockType "P"
+:stroke ""
+:rotation 0
+:collapsed true
+:borderRadius 8
+:index 0
+:scale [1 1]
+:pageId "impulsohub onboarding"
+:scaleLevel "md"
+:fill ""
+:compact false
+:isAutoResizing false
+:type "logseq-portal"
+:size [464 40]
+:strokeType "line"
+:strokeWidth 2
+:opacity 1
+:id "3e4d1670-b05a-11f0-b8c6-0dc00c010050"
+:noFill false
+:isLocked false
+:point [-392 -296]
+:parentId "68faa306-38d7-403e-8afe-82ba391dea90"
+:collapsedHeight 3245.921745267618
+:nonce 1761256209392}}
+:block/updated-at 1761256790005} 
+{:block/created-at 1761256794716
+:block/properties 
+{:ls-type :whiteboard-shape
+:logseq.tldraw.shape 
+{:blockType "P"
+:stroke ""
+:collapsed true
+:borderRadius 8
+:index 1
+:scale [1 1]
+:pageId "tasks impulso"
+:scaleLevel "md"
+:fill ""
+:compact false
+:isAutoResizing false
+:type "logseq-portal"
+:size [400 40]
+:strokeType "line"
+:strokeWidth 2
+:opacity 1
+:id "8f7b8ef0-b05a-11f0-b8c6-0dc00c010050"
+:noFill false
+:isLocked false
+:point [312 -616]
+:parentId "68faa306-38d7-403e-8afe-82ba391dea90"
+:collapsedHeight 1385.5938147334114
+:nonce 1761256345254}}
+:block/updated-at 1761256794716} 
+{:block/created-at 1761256794717
+:block/properties 
+{:ls-type :whiteboard-shape
+:logseq.tldraw.shape 
+{:stroke ""
+:index 2
+:scale [1 1]
+:fill ""
+:type "line"
+:strokeType "line"
+:strokeWidth 1
+:opacity 1
+:label ""
+:id "8f7b8ef1-b05a-11f0-b8c6-0dc00c010050"
+:fontWeight 400
+:noFill true
+:point [-116.38 -572]
+:fontSize 20
+:handles 
+{:start 
+{:id "start"
+:canBind true
+:point [0 275]
+:bindingId "8f7b8ef2-b05a-11f0-b8c6-0dc00c010050"}
+:end 
+{:id "end"
+:canBind true
+:point [571.2 0]
+:bindingId "91240ed1-b05a-11f0-b8c6-0dc00c010050"}}
+:decorations 
+{:end "arrow"}
+:parentId "68faa306-38d7-403e-8afe-82ba391dea90"
+:nonce 1761256345253
+:italic false}}
+:block/updated-at 1761256794717})
+:pages (
+{:block/uuid #uuid "68faa306-38d7-403e-8afe-82ba391dea90"
+:block/properties 
+{:ls-type :whiteboard-page
+:logseq.tldraw.page 
+{:id "68faa306-38d7-403e-8afe-82ba391dea90"
+:name "impulso"
+:bindings 
+{:8f7b8ef2-b05a-11f0-b8c6-0dc00c010050 
+{:id "8f7b8ef2-b05a-11f0-b8c6-0dc00c010050"
+:type "line"
+:fromId "8f7b8ef1-b05a-11f0-b8c6-0dc00c010050"
+:toId "3e4d1670-b05a-11f0-b8c6-0dc00c010050"
+:handleId "start"
+:point [0.5 0.5]
+:distance 4}
+:8f7b8ef3-b05a-11f0-b8c6-0dc00c010050 
+{:id "8f7b8ef3-b05a-11f0-b8c6-0dc00c010050"
+:type "line"
+:fromId "8f7b8ef1-b05a-11f0-b8c6-0dc00c010050"
+:toId "8f7b8ef0-b05a-11f0-b8c6-0dc00c010050"
+:handleId "end"
+:point [0.5 0.5]
+:distance 4}
+:91240ed1-b05a-11f0-b8c6-0dc00c010050 
+{:id "91240ed1-b05a-11f0-b8c6-0dc00c010050"
+:type "line"
+:fromId "8f7b8ef1-b05a-11f0-b8c6-0dc00c010050"
+:toId "8f7b8ef0-b05a-11f0-b8c6-0dc00c010050"
+:handleId "end"
+:point [0.57 0.14]
+:distance 4}}
+:nonce 1
+:assets []
+:shapes-index ("3e4d1670-b05a-11f0-b8c6-0dc00c010050" "8f7b8ef0-b05a-11f0-b8c6-0dc00c010050" "8f7b8ef1-b05a-11f0-b8c6-0dc00c010050")}}
+:block/updated-at 1761256807917
+:block/created-at 1761256198010
+:block/type "whiteboard"
+:block/name "impulso"
+:block/original-name "Impulso"})}

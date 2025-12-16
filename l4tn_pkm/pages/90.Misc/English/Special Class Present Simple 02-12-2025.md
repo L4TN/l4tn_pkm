@@ -1,0 +1,42 @@
+- Present Simple
+-
+- When do we use/How when
+- -> Routines
+- -> Facts
+- -> General Truth
+- -> Hobbie (I Like)
+- -> Habits
+- -> Schedule (Hours)
+-
+- Facts & Universal Truths
+	- -> The sun
+-
+- * Present simple (we canot see to be verb)
+- ![image.png](../assets/image_1764716834195_0.png)
+-
+- ![image.png](../assets/image_1764717254483_0.png)
+-
+-
+- I do Tasks, not made tasks
+- ![image.png](../assets/image_1764717482822_0.png)
+-
+- ![image.png](../assets/image_1764717500109_0.png)
+-
+-
+- ![image.png](../assets/image_1764718300984_0.png)
+- ![image.png](../assets/image_1764718420737_0.png)
+- ![image.png](../assets/image_1764718448192_0.png)
+-
+- ![image.png](../assets/image_1764718552460_0.png)
+-
+- ![image.png](../assets/image_1764718579277_0.png)
+-
+- (do significa que a sentença esta nopresente mas o "do" nao tem tradução)
+- ![image.png](../assets/image_1764718615471_0.png)
+  ![image.png](../assets/image_1764718692261_0.png)
+- ![image.png](../assets/image_1764718712187_0.png)
+- ![image.png](../assets/image_1764718744577_0.png)
+- ![image.png](../assets/image_1764718994949_0.png)
+- [Present Simple Students Worksheet.docx](../assets/Present_Simple_Students_Worksheet_1764719009320_0.docx)
+-
+-
