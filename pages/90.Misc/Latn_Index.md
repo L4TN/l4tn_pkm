@@ -1,7 +1,7 @@
 # Mapa de Conteúdo Principal
 - ## Descrição
   Mapa de Conteúdo (MOC) principal que organiza todo o sistema de conhecimento pessoal, dividido em áreas da vida e suas respectivas subáreas.
--
+- Opa
 - ## Áreas Principais
 	- ### 10_Work
 		- **Descrição:** Área da vida relacionado ao trabalho e dedicação. (Índice em [[10_Work_Index]] )
