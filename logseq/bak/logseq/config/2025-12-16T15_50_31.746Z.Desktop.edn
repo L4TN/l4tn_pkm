@@ -299,7 +299,7 @@
  ;;  :charge-range    600}   ; Default value: 600
 
  ;; Favorites to list on the left sidebar
- :favorites ["latn_index - mapa de conteúdo principal"]
+ :favorites ["latn_index" "latn_index - mapa de conteúdo principal" "Latn_Index"]
 
  ;; Set flashcards interval.
  ;; Expected value:
