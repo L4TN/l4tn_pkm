@@ -1,16 +1,16 @@
 # Suplementos + Ginseng / Gerin / Gerovital / Gerilon
 
-## Tabela — itens, papéis e links
+## Tabela — itens, marca de referência e link (exemplo)
 
-| Item | Papel principal na “stack” | Link |
+| Item | Marca de referência | Link Mercado Livre (exemplo) |
 | --- | --- | --- |
-| Guaraná (extrato/pó) | Estimulante leve de ação rápida; aumenta vigília e motivação para iniciar tarefas. | https://lista.mercadolivre.com.br/guarana-po-suplemento |
-| Rhodiola Rosea | Adaptógeno que reduz sensação de fadiga e stress, ajudando a manter foco sob carga. | https://www.drogariasaopaulo.com.br/rhodiola-rosea-300mg---30-capsulas-935286329/p |
-| Ginseng (Panax) ou combos (Natus Gerin / Gerovital / Gerilon) | Ginseng puro dá o “punch” de energia cognitiva; versões polivitamínicas somam micronutrientes, mas com ginseng mais fraco. | https://www.mercadolivre.com.br/panax-coreano-puro-natural-120-caps--status-verde/up/MLBU3516946272#polycard_client=search-nordic&search_layout=grid&position=10&type=product&tracking_id=d85455c0-8758-47ed-a1a6-35723f6dff09&wid=MLB5846650624&sid=search |
-| Ômega-3 | Melhora função sináptica, humor e controle de impulsividade ao longo de semanas/meses. | https://lista.mercadolivre.com.br/omega-3-1000mg-capsulas |
-| Bacopa Monnieri | Atua em memória de trabalho e foco sustentado, efeito acumulativo em 4–8 semanas. | https://www.drogariasaopaulo.com.br/bacopa-monnieri-250mg---60-capsulas-935285959/p |
-| Ginkgo Biloba | Aumenta fluxo sanguíneo cerebral, ajudando atenção e clareza mental. | https://lista.mercadolivre.com.br/ginkgo-biloba-120mg-capsulas |
-| Sidera (Sideritis) | Fitoterápico com efeito leve em dopamina/noradrenalina e ansiedade, útil como fundo diário. | https://www.etsy.com/pt/listing/985502218/cha-organico-selvagem-da-montanha |
+| Guaraná em pó | Guaraná em pó puro (qualquer marca com boa reputação) | https://lista.mercadolivre.com.br/guarana-em-po-100g-suplemento |
+| Rhodiola Rosea 300 mg | Rhodiola Rosea 300 mg – 60 cápsulas (várias marcas manipuladas) | https://lista.mercadolivre.com.br/rhodiola-rosea-300mg-60-capsulas |
+| Ginseng Panax 500 mg | Ginseng Panax 100% Puro 500 mg 120 cáps – Status Verde | https://lista.mercadolivre.com.br/ginseng-panax-100-puro-120-caps-status-verde |
+| Ômega-3 1000 mg | Ômega-3 1000 mg 120 cáps (Maxinutri / similar) | https://lista.mercadolivre.com.br/omega-3-1000mg-120-capsulas |
+| Bacopa Monnieri 250 mg | Bacopa Monnieri 250 mg 60 cáps – UnicPharma ou manipulada | https://lista.mercadolivre.com.br/bacopa-monnieri-250mg-60-capsulas |
+| Ginkgo Biloba 120 mg | Ginkgo Biloba 120 mg 60 cáps | https://lista.mercadolivre.com.br/ginkgo-biloba-120mg-60-capsulas |
+| Sideritis (chá grego) | Chá Grego da Montanha / Sideritis scardica importado | https://lista.mercadolivre.com.br/cha-grego-montanha-sideritis |
 
 ## Observação de eficácia (comparação com Atentah)
 
