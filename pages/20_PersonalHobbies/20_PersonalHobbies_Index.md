@@ -1,8 +1,1 @@
-- [[21_Minimalism_Index]]
-- [[22_Survivalism_Index]]
-- [[23_Spirituality_Index]]
-- [[24_HealthNatural_Index]]
-- [[25_MilitaryFitness_Index]]
-- [[26_LogicAndOrder_Index]]
-- [[27_Nature_Index]]
--
+# 20_PersonalHobbies - Index\n\nCentral hub for personal hobbies, interests, and self-improvement in the LifeOS PKM.\n\n## Subareas\n- [[21_Minimalism]] - Minimalism and nomad life strategies\n- [[22_Survivalism_Index]] - Survivalism techniques and preparation\n- [[23_Spirituality_Index]] - Spirituality and philosophy\n- [[24_HealthNatural]] - Health, longevity, and natural wellness\n- [[25_FitnessMilitary]] - Fitness and military training (consolidated)\n- [[26_LogicCriticalThinking]] - Logic, critical, and computational thinking\n- [[27_Nature_Index]] - Nature and outdoor activities\n- [[28_Travel]] - Travel notes and planning\n\n## Related MOCs\n- [[90.Misc/MOCs/Life]] - Broader personal connections\n\n## Workflow Reminder\n- Capture experiences in [[journals]]\n- Insights to relevant subareas or zettels
