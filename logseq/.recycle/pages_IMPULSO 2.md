@@ -1,2 +1,0 @@
-- Migração da base de AWS para maquina Contaboo (App todo)
-- N8N

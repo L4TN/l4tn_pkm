@@ -1,2 +1,0 @@
-- **RE: Melhorias movimentações automáticas - 16/09/2025**
--

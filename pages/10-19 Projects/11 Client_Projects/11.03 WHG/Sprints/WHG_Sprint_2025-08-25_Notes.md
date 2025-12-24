@@ -1,0 +1,37 @@
+## Daily:
+
+ - Remoção de uma Conta para o Gabriel BittenCourt (Quick Win - 20min) OK 
+ - View para Rhauany usar (Quick 10min) xml.View_Posicao_Opcao_Flx OK 
+	SELECT TOP 100 * FROM [xml].[View_Posicao_Opcao_Flx] ORDER BY Dt_Posicao DESC;
+
+ - Falar com Middle Diogo/Amanda BOV BMF (Quick Win - 1h) OK
+	SELECT * FROM [live].[Report_Prisma_View_Custos_Operacionais_BMF]
+	SELECT * FROM [live].[Report_Prisma_View_Custos_Operacionais_BOV] 
+	Email: Disponibilizar VIEW Prisma - Custos operacionais BOV
+	Nova rotina rodará as 7h da manhã, diariamente de segunda a sexta.
+ 
+ - Tarefas Compliance (Principal)
+	- Ajustes finos Bureau de Dados
+	- Perpetuar arquivo bureaus de dados 
+	- Assitir Vídeos, Planejar Task
+	
+	
+	Email: Desenvolvimento - cadastro e PLD
+
+ - Regras Motor Cotrim (2h)
+ - Cobrar Aline API Fundos na Terça caso ela não entrar em contato até meio dia (API Funds)
+ 
+ 
+ 8h da manha
+ 
+ ## Details
+ 
+ Irei planejar a execução da demanda de Compliance e utilizar agentes de AI para mater esse ponto de forma rápida
+ 
+ Primeiro irei atacar o ponto mais simples e mais bem scopado que são os ajustes finos 
+ 
+ 
+ 
+ 
+ 
+ 
