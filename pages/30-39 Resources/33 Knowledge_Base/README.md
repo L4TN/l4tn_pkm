@@ -1,3 +1,0 @@
-# Knowledge Base README
-
-# 10_Knowledge - Permanent Notes\n\nSínteses atômicas de aprendizados próprios derivados de experiência, projetos e estudos.\n\n## Princípios\n- Atômico: Uma ideia central por nota\n- Próprias palavras: Não copiar, sintetizar\n- Conectado: Linkar generosamente com outras permanent notes\n- Citado: Referenciar sources de [[11_Literature]] quando aplicável\n\n## Diferença vs Literature Notes\n- Literature: \"O que o autor X disse sobre Y\"\n- Permanent: \"O que EU entendo/penso sobre Y baseado em experiências e leituras\"\n\n## Template\nVer: [[Template_Zettel]]\n\n## Exemplos\n- [[Architectural Decision Records]]\n- [[When to Use Microservices]]\n- [[State Management Patterns]]
