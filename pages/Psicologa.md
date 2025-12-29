@@ -1,1 +1,3 @@
-- quasi meus beneficios
+- quasi meus beneficios em manter essa relação ?
+- Os papeis que eu desenvolvi dentro da relação
+- Voce é participante da sua vida (Potencia)
