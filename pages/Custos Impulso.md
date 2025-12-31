@@ -45,7 +45,7 @@
 - ### 💰 Custo total
 - **US$ 0,003364**
 -
-- ![image.png](../assets/image_1767142769268_0.png)
+- ![image.png](../assets/image_1767142846139_0.png)
 -
 -
 -
