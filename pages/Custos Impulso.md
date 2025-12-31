@@ -86,6 +86,16 @@
 -
 -
 -
+- ![image.png](../assets/image_1767143640677_0.png)
+-
+- ### 🔢 Tokens
+- **Input (entrada):** **25.390**
+- **Output (saída):** **5.425**
+- **Total (In + Out):** **30.815**
+- ### 💰 Custo
+- **US$ 0,005525**
+-
+-
 -
 -
 -
