@@ -1,7 +1,7 @@
 - Primeiro Excel Custos
   ![image.png](../assets/image_1767140256595_0.png)
 -
-- ![image.png](../assets/image_1767140415424_0.png)
+-
 - ### 🔢 Tokens
 - **Input (entrada):** **12.165**
 - **Output (saída):** **3.597**
@@ -14,7 +14,7 @@
 - Segundo Excel Custos
 - ![image.png](../assets/image_1767141754594_0.png)
 -
-- ![image.png](../assets/image_1767141778934_0.png)
+-
 - ### 🔢 Tokens
 - **Tokens de entrada (Input):** **18.806**
 - **Tokens de saída (Output):** **6.214**
@@ -26,7 +26,6 @@
 -
 -
 - ![image.png](../assets/image_1767142186959_0.png)
-  ![image.png](../assets/image_1767142249175_0.png)
 - ### 🔢 Tokens
 - **Input (entrada):** **13.801**
 - **Output (saída):** **4.876**
