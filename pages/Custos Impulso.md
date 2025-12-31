@@ -3,7 +3,12 @@
 - INPUT USUARIO:
 - Ola
 -
+- Ouput Agente:
+- 3 Msgs
 -
+- LLM:
+- 5 Chamadas
+- ![image.png](../assets/image_1767140415424_0.png)
 -
 -
 -
