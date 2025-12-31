@@ -10,7 +10,9 @@
 - Segundo Excel Custos
 - ![image.png](../assets/image_1767141754594_0.png)
 -
--
+- ![image.png](../assets/image_1767141778934_0.png)
+- Custo total:
+- Tokens Total:
 -
 -
 -
