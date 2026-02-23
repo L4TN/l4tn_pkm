@@ -1,7 +1,0 @@
-- [[41_Mathematics_Index]]
-- [[42_Logic_Index]]
-- [[43_Psychology_Index]]
-- [[44_Coaching_Index]]
-- [[45_AI_Index]]
-- [[46_Business_Index]]
--
