@@ -1,0 +1,83 @@
+Frontend:
+Prisma_FrontEnd
+
+Backend:
+Prisma_Backend
+
+Telas de Referencia e exemplos de UI:
+Tela de Boletas (src\app\pages\consolidacao\boletas-consolidacao\boletas-consolidacao.component.html)
+Tela de Portfólios (src\app\pages\consolidacao\portfolio-consolidacao\portfolio-consolidacao.component.html)
+Tela de Carteiras (src\app\pages\consolidacao\carteira-consolidacao\carteira-consolidacao.component.html)
+
+Temos duas Tasks para implementar:
+
+# 1° TASK
+Na Tela de portfólio e na Tela de Carteira: 
+
+Adicionar seleção de datas para o botão de Sync(na vdd ja temos um componente para isso), como temos na tela de contas(ja peguei esse componente de la) 
+
+Na tela de Carteiras ao clicar no ícone de "Sync", vamos ter quer usar o IdCarteira da linha atual que clicamos no icone de sync (ao clicar no icone de sync abrir o componente personalizado ngx-conta-consolidacao que reaproveitei da tela de Contas)
+
+Na tela de Portfolios a mesma coisa acima, mas usando IdPorfolioConsolidacao
+vamos enviar novos TpIds (IdCarteiraConsolidacao que vai ser idcliente pegando a tabela TbCarteiraConsolidacao e IdPorfolioConsolidacao)
+
+# 2° TASK
+
+Tela de Carteiras e tela de Portfolios: 
+
+Adicionar botão para upload em lotes( usar mesma UI que tela de boletas ou seja botao de upload na esquerda inferior do card e datagrid) na tela de carteira e portfólio.
+
+Vamos upar uma planilha excel com os mesmos campos que usamos quando cadastramos de forma unitaria (ao clicar no icone de + do datagrid abre-se o C:\Users\matheus.dias\source\Prisma\Prisma_FrontEnd\src\app\pages\consolidacao\carteira-consolidacao\carteira-consolidacao-detail)
+
+e na tela de porfolios a mesma coisa
+C:\Users\matheus.dias\source\Prisma\Prisma_FrontEnd\src\app\pages\consolidacao\portfolio-consolidacao\portfolio-consolidacao-detail
+
+AQUI É BOM OLHAR COMO "SYNC_POSICAO" comofunciona, as tabelas envolvidas sao:
+
+TbCarteiraConsolidacao e TbPortfolioConsolidacao
+
+Backend:
+e como chegamos nos TpIds
+(pq ate agr n pensei como vou encaixar o idPortfolio, talvez seja necessario ate adaptar o componente ngx-conta-consolidacao)
+dar uma olhada em PersistSolicitacaoConsolidacaoRequest PutConsolidacaoRequestAsync e PostConsolidacaoSolicitacaoRequest
+
+
+(No Backend, a rota que usamos a cima ao criar de forma uniatria, se nao me engano tbm é unitario internamento para a CMD/Comdinheiro, recomendo implementar outra rota e se basear na rota atual unitaria), acho que no fim é um laço para a CMD pq a api da CMD é unitária se nao me engano, entao nao vai ter muito como fugir de fazer um laço e ir de um a um passado pelo Excel
+
+#CreateOrUpdateWallet
+
+
+EXEMPLO CRIE UM         
+
+[HttpPost("wallet/createOrUpdateWalletBatch")]
+        [Produces("application/json")]
+        [Authorize]
+
+        public async Task<int> CreateOrUpdateWalletBatch(List<WalletRequest> request)
+        {
+            try
+            {
+                var payload = JsonConvert.SerializeObject(request);
+                _logger.LogInformation($"Payload: {payload}");
+
+                return await _portfolioBsn.CreateOrUpdateWalletAsync(request);
+            }
+            catch (Exception ex)
+            {
+                var message = ex.Message;
+                if (ex.InnerException != null)
+                {
+                    message = $"{ex.InnerException.Message} | {message}";
+                }
+
+                _logger.LogError(ex, message);
+                throw;
+            }
+        }
+
+ten um createOrUpdateWallet da controller e um createOrUpdateWallet da bsn que é chamado pela controller
+
+
+Tente fazer o menor numero de alteracoes possíveis, pois tudo é sensível
+PLANEJE OS PONTOS ACIMA PENSE BEM E TENTE ACHAR EXEMPLOS 
+	
