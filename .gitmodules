@@ -1,6 +1,3 @@
-[submodule "pages/10_Projetos/11_Trabalho"]
-	path = pages/10_Projetos/11_Trabalho
-	url = https://github.com/L4TN/whg.git
 [submodule "pages/10_Projetos/10.1_Impulso"]
 	path = pages/10_Projetos/10.1_Impulso
 	url = https://github.com/L4TN/impulso.git
