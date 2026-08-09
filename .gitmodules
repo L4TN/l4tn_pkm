@@ -1,9 +1,0 @@
-[submodule "pages/10_Projetos/10.1_Impulso"]
-	path = pages/10_Projetos/10.1_Impulso
-	url = https://github.com/L4TN/impulso.git
-[submodule "pages/10_Projetos/10.2_WHG"]
-	path = pages/10_Projetos/10.2_WHG
-	url = https://github.com/L4TN/whg.git
-[submodule "pages/10_Projetos/10.3_Itau"]
-	path = pages/10_Projetos/10.3_Itau
-	url = https://github.com/L4TN/itau.git
