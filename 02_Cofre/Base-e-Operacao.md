@@ -8,6 +8,7 @@ Tags: `#casa` `#rotina` `#financeiro`
   * [ ] Arrumar a cama.
   * [ ] Me lembre de lavar a louça às 1:30.
 
+Trs
 
 ## COMPRAS (MERCADO)
 
