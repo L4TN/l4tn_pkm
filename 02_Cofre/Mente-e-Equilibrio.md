@@ -4,9 +4,7 @@ Tags: `#mente` `#terapia` `#pessoal` `#hobbies`
 
 ## TERAPIAS & REFLEXÕES
 
-
-
-## RAIZ VIVA
+## RAIZ VIVA — LUANA
 
 ### Atividades
 
@@ -18,6 +16,8 @@ Tags: `#mente` `#terapia` `#pessoal` `#hobbies`
 - [ ] Se alimentar de comida de verdade
 - [ ] Pelo menos 3x na semana coloca o corpo para suar
 - [ ] Documente as ações em fotos e mande no grupo do acompanhamento
+
+**PDF de referência:** https://drive.google.com/file/d/1KvRK8QQvssXewzGe-z8XelRxCY34SUtD/view?usp=sharing
 
 ### Sugestões Para Aplicar as Atividades
 
@@ -72,3 +72,5 @@ Tags: `#mente` `#terapia` `#pessoal` `#hobbies`
 * **Rosa Mosqueta + Seiva de Dragão** — pode usar pela manhã e antes de dormir. De 1-2 gotas cada um, varia conforme a pele ser mais oleosa ou seca.
 * Seiva de Dragão: http://amazon.com.br/Sangue-Drag%C3%A3o-Regenera%C3%A7%C3%A3o-Col%C3%A1geno-Preven%C3%A7%C3%A3o/dp/B0CM4QZ9Y1
 * Rosa Mosqueta: https://www.amazon.com.br/%C3%93leo-Rosa-Mosqueta-Pura-Antioxidante/dp/B0CM4NT481
+
+## TERAPIA TCC — LIZ
