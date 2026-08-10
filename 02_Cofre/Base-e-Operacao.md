@@ -8,6 +8,7 @@ Tags: `#casa` `#rotina` `#financeiro`
   * [ ] Arrumar a cama.
   * [ ] Me lembre de lavar a louça às 1:30.
 
+
 ## COMPRAS (MERCADO)
 
 * [ ] Seleta de legumes
@@ -17,7 +18,7 @@ Tags: `#casa` `#rotina` `#financeiro`
 ## FINANCEIRO
 
 * **Agosto 2026:**
-  * [x] Aluguel / Condomínio
+  * [ ] Aluguel / Condomínio
   * [ ] Internet
   * [ ] Luz
   * [ ] Pagar Dentista (R$ 350,00)
