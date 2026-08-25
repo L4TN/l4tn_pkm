@@ -92,3 +92,16 @@ Tags: `#mente` `#terapia` `#pessoal` `#hobbies`
 - **Estilo visual:** camisetas oversized e calças street/cargo.
 
 > Lote 2026-08-25 · folha 2
+
+
+---
+
+## [2026-08-25 20:22] Reflexões sobre Valores, Objetivos e Rotina
+
+- Autoconhecimento e valores: identificar o que valoriza na vida (observar, ver filmes, lutar por tempo livre).
+- Definição de caráter: refletir sobre quais comportamentos e atitudes desenvolver para alcançar os objetivos.
+- 3 Objetivos principais: soluções para cidades inteligentes, casa moderna e projetos de expansão.
+- Rotina e presença: organizar horários de sono, tempo livre e sessão de terapia (ver também: TERAPIAS & REFLEXÕES).
+- [ ] Definir horário fixo e notificação para preencher o caderno (KØR sketch).
+
+> Lote 2026-08-25 · folha 3
