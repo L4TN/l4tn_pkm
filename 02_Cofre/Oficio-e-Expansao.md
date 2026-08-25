@@ -333,3 +333,14 @@ FIM DO DIA (10 min): quantas do Ivy Lee completei? o que bloqueou? lista de aman
 - **5 min com o colega** (nada de celular) — treina o cérebro a não procrastinar.
 - **Pomodoro só para tarefas complexas**; resto: celular com timer e planner.
 - **Profissional guiado** (executa tarefas simples revisáveis) vs **coordenado** (desenha do início ao fim). Bom profissional faz os dois; revise o desenho em pares, com feedbacks simultâneos, antes de colocar a mão no código.
+
+
+---
+
+## [2026-08-24 23:29] Anotações sobre Cândido Portinari
+
+- Biografia de Cândido Portinari:
+  - Data de nascimento anotada: 30 de dezembro de 1930
+  - Mudou-se de São Paulo aos 15 anos de idade
+
+> 📄 Lote 2026-08-24 · folha 1 · lida com confiança
