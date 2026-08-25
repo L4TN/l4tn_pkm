@@ -74,3 +74,21 @@ Tags: `#mente` `#terapia` `#pessoal` `#hobbies`
 * Rosa Mosqueta: https://www.amazon.com.br/%C3%93leo-Rosa-Mosqueta-Pura-Antioxidante/dp/B0CM4NT481
 
 ## TERAPIA TCC — LIZ
+
+
+---
+
+## [2026-08-25 20:19] Reflexões de Solitude e Objetivos Pessoais
+
+- **Autodesenvolvimento e Solitude:** busca por maturidade emocional, fé, relações profundas e independência de validação externa.
+- **Hábitos inegociáveis diários:**
+  - [ ] Banho gelado
+  - [ ] Esteira
+- **Objetivos até 30/12/2026:**
+  - Tocar um instrumento
+  - Viajar nos fins de semana
+  - Reestruturar treino e rotina de academia (ver também: Corpo-e-Saude)
+  - Morar sozinho
+- **Estilo visual:** camisetas oversized e calças street/cargo.
+
+> Lote 2026-08-25 · folha 2
