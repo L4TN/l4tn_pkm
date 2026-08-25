@@ -355,3 +355,13 @@ FIM DO DIA (10 min): quantas do Ivy Lee completei? o que bloqueou? lista de aman
 - Mudança: Deixou São Paulo aos 15 anos de idade para fixar nova residência.
 
 > 📄 Lote 2026-08-25 · folha 1 · lida com confiança
+
+
+---
+
+## [2026-08-25 09:59] Estudos sobre Cândido Portinari
+
+- Anotação biográfica sobre Cândido Portinari (registro de nascimento em 30 de dezembro de 1930).
+- Deixou São Paulo aos 15 anos para fixar residência em outra localidade.
+
+> 📄 Lote 2026-08-25 · folha 1
