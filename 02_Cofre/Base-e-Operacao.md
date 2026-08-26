@@ -2,26 +2,22 @@
 
 Tags: `#casa` `#rotina` `#financeiro`
 
-## ORGANIZAÇÃO DA ROTINA
+## 
 
-* **Tarefas Diárias:**
-  * [ ] Arrumar a cama.
-  * [ ] Me lembre de lavar a louça às 1:30.
+## ROTINA MENSAL (CALENDÁRIO)
 
-Trs
-Test
+| Dom | Seg                                | Ter                              | Qua                               | Qui                               | Sex                              | Sáb |
+|:---:|:----------------------------------:|:--------------------------------:|:---------------------------------:|:---------------------------------:|:--------------------------------:|:---:|
+|     | [1](../.utils/Rotinas/Segunda.md)  | [2](../.utils/Rotinas/Terça.md)  | [3](../.utils/Rotinas/Quarta.md)  | [4](../.utils/Rotinas/Quinta.md)  | [5](../.utils/Rotinas/Sexta.md)  | 6   |
+| 7   | [8](../.utils/Rotinas/Segunda.md)  | [9](../.utils/Rotinas/Terça.md)  | [10](../.utils/Rotinas/Quarta.md) | [11](../.utils/Rotinas/Quinta.md) | [12](../.utils/Rotinas/Sexta.md) | 13  |
+| 14  | [15](../.utils/Rotinas/Segunda.md) | [16](../.utils/Rotinas/Terça.md) | [17](../.utils/Rotinas/Quarta.md) | [18](../.utils/Rotinas/Quinta.md) | [19](../.utils/Rotinas/Sexta.md) | 20  |
+| 21  | [22](../.utils/Rotinas/Segunda.md) | [23](../.utils/Rotinas/Terça.md) | [24](../.utils/Rotinas/Quarta.md) | [25](../.utils/Rotinas/Quinta.md) | [26](../.utils/Rotinas/Sexta.md) | 27  |
+| 28  | [29](../.utils/Rotinas/Segunda.md) | [30](../.utils/Rotinas/Terça.md) |                                   |                                   |                                  |     |
 
+### DESVIOS (dias atípicos)
 
-## COMPRAS (MERCADO)
+       Formato: `dia → troca (o que muda, quando e de onde sai)`
 
-* [ ] Seleta de legumes
-* [ ] Vinagre
-* [ ] Ovos e Peito de Frango
+## MERCADO
 
 ## FINANCEIRO
-
-* **Agosto 2026:**
-  * [ ] Aluguel / Condomínio
-  * [ ] Internet
-  * [ ] Luz
-  * [ ] Pagar Dentista (R$ 350,00)

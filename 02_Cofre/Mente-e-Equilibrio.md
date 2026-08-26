@@ -2,24 +2,31 @@
 
 Tags: `#mente` `#terapia` `#pessoal` `#hobbies`
 
-## TERAPIAS & REFLEXÕES
 
-## RAIZ VIVA — LUANA
 
-### Atividades
+## Atividades do dia a dia
 
-- [ ] Se arrumar pela manhã
-- [ ] Pós banho, usar um creme corporal
+- [ ] Banho Gelado (5min-10min)
+
+- [ ] Se arrumar pela manhã após o banho 
+  
+  - Skin Care
+  
+  - Roupas confortáveis
+  
+  - Creme corporal
+
 - [ ] Utilizar os óleos essenciais para cada momento que condiz com ele
-- [ ] Ouvir música, e até sons ambientes (cachoeira, som de chuva, crepitar da lareira) que conversem com o estado de espírito daquele momento
-- [ ] Ir a um parque
-- [ ] Se alimentar de comida de verdade
-- [ ] Pelo menos 3x na semana coloca o corpo para suar
+
+- [ ] Ouvir música, e até sons ambientes (cachoeira, som de chuva, crepitar da lareira) que conversem com o estado de espírito daquele momento (Playlists)
+
+- [ ] Se colocar em movimento (sair do quarto, ir a um parque, café, academia, lugar diferente, Mudar de ambiente força o cérebro a focar no mundo exterior, desativando a rede neural responsável por gerar pensamentos repetitivos e preocupações.
+
+- [ ] Se alimentar de comida de verdade (Carne com gordura boa, legumes)
+
 - [ ] Documente as ações em fotos e mande no grupo do acompanhamento
 
-**PDF de referência:** https://drive.google.com/file/d/1KvRK8QQvssXewzGe-z8XelRxCY34SUtD/view?usp=sharing
-
-### Sugestões Para Aplicar as Atividades
+## Sugestões Para Aplicar as Atividades
 
 #### Óleos Essenciais
 
@@ -28,11 +35,13 @@ Tags: `#mente` `#terapia` `#pessoal` `#hobbies`
 * **Olíbano** — Presença, Centramento e reduz Estresse — https://www.amazon.com.br/PHYTOTERAPICA-Aromaterapia-meditativos-fortalecimento-Amadeirada/dp/B07MMVNC1S
 * **Patchouli** — Estabilidade, Aterramento, Segurança — https://www.amazon.com.br/PHYTOTERAPICA-Aromaterapia-aterramento-manutenção-Almiscarado/dp/B07M9C862H
 
-> ⚠️ Pode começar escolhendo um que mais se identifica agora, e ir pegando os outros depois. Ou comprar todos de uma vez para ir intercalando. Escolha o que faz sentido!
+> Pode começar escolhendo um que mais se identifica agora, e ir pegando os outros depois. Ou comprar todos de uma vez para ir intercalando. Escolha o que faz sentido!
+
+#### 
 
 #### Visual
 
-* Acordar meia hora mais cedo (se não tiver o hábito), tomar um banho, usar um creme, se arrumar e se preparar para viver o dia.
+* Acordar uma hora mais cedo (se não tiver o hábito), tomar um banho, usar um creme, se arrumar e se preparar para viver o dia.
 * **Creme Corporal:** https://terralnatural.com.br/collections/hidratante-corpo/products/creme-corporal-alecrim
 
 #### Músicas
@@ -44,20 +53,26 @@ Tags: `#mente` `#terapia` `#pessoal` `#hobbies`
 * **Inspiração:** https://music.apple.com/br/playlist/inspira%C3%A7%C3%A3o/pl.u-KVXBkABsLarGkvd
 * **Melancólica:** https://music.apple.com/br/playlist/melanc%C3%B3lica/pl.u-oZylD19tG8WKM3D
 
-> ⚠️ Recomendo demais a playlist de músicas melancólicas, para trazer presença em momentos de interiorização — mente que pensa bastante, sempre analisando e interpretando tudo.
+> Recomendo demais a playlist de músicas melancólicas, para trazer presença em momentos de interiorização — mente que pensa bastante, sempre analisando e interpretando tudo.
 
-#### Visita ao Parque
+#### 
 
-* Sugestão: **Parque Burle Marx**. Reserve algumas horas de um dia livre nas próximas cinco semanas. Organize trajeto, o que levar e o que comer. Vá, preferencialmente sozinho — são suas percepções consigo mesmo.
-* https://www.google.com/maps/place/Parque+Burle+Marx/data=!4m2!3m1!1s0x94ce51b32c909031:0xafb6a8bb13df8993?sa=X&ved=1t:155783&ictx=111
+#### Se colocar em movimento (Ex.: Visita ao Parque)
 
-#### Colocar o corpo para suar
+* Sugestão: **Parque Burle Marx**. Reserve algumas horas de um dia livre nas próximas cinco semanas. Organize trajeto, o que levar e o que comer. Vá, preferencialmente sozinho — são suas percepções consigo mesmo. https://www.google.com/maps/place/Parque+Burle+Marx/data=!4m2!3m1!1s0x94ce51b32c909031:0xafb6a8bb13df8993?sa=X&ved=1t:155783&ictx=111
+* Mudar de ambiente força o cérebro a focar no mundo exterior, desativando a rede neural responsável por gerar pensamentos repetitivos e preocupações.
 
-* Tem que ser simples: caminhada, polichinelos, correr, bike, levantar peso, abdominais. A meta é suar. Às vezes 5 minutos bastam. No mínimo 3x na semana.
+#### 
+
+#### Colocar o corpo para suar 4x na semana
+
+* Tem que ser simples: caminhada, polichinelos, correr, bike, levantar peso, abdominais. A meta é suar. Às vezes 5 minutos bastam.
 * Sugestão:
   * [ ] Acordou, se alonga 5min
   * [ ] Polichinelos ou pular corda ou sair pra caminhar… 5 a 15min
   * [ ] Um banho, depois passa o hidratante 20min
+
+#### 
 
 #### Siga o dia como manda sua rotina
 
@@ -67,41 +82,37 @@ Tags: `#mente` `#terapia` `#pessoal` `#hobbies`
 - [ ] Momentos meditativos? 5 a 15min bastam — use o **Olíbano**
 - [ ] Precisa aterrar? Pensamentos muito dispersos? Use o **Patchouli**
 
+#### 
+
 #### Óleo para pele
 
 * **Rosa Mosqueta + Seiva de Dragão** — pode usar pela manhã e antes de dormir. De 1-2 gotas cada um, varia conforme a pele ser mais oleosa ou seca.
+
 * Seiva de Dragão: http://amazon.com.br/Sangue-Drag%C3%A3o-Regenera%C3%A7%C3%A3o-Col%C3%A1geno-Preven%C3%A7%C3%A3o/dp/B0CM4QZ9Y1
+
 * Rosa Mosqueta: https://www.amazon.com.br/%C3%93leo-Rosa-Mosqueta-Pura-Antioxidante/dp/B0CM4NT481
-
-## TERAPIA TCC — LIZ
-
-
----
-
-## [2026-08-25 20:19] Reflexões de Solitude e Objetivos Pessoais
-
 - **Autodesenvolvimento e Solitude:** busca por maturidade emocional, fé, relações profundas e independência de validação externa.
+
 - **Hábitos inegociáveis diários:**
+  
   - [ ] Banho gelado
   - [ ] Esteira
+
 - **Objetivos até 30/12/2026:**
+  
   - Tocar um instrumento
   - Viajar nos fins de semana
   - Reestruturar treino e rotina de academia (ver também: Corpo-e-Saude)
   - Morar sozinho
+
 - **Estilo visual:** camisetas oversized e calças street/cargo.
 
-> Lote 2026-08-25 · folha 2
-
-
----
-
-## [2026-08-25 20:22] Reflexões sobre Valores, Objetivos e Rotina
+## Reflexões sobre Valores, Objetivos e Rotina
 
 - Autoconhecimento e valores: identificar o que valoriza na vida (observar, ver filmes, lutar por tempo livre).
-- Definição de caráter: refletir sobre quais comportamentos e atitudes desenvolver para alcançar os objetivos.
-- 3 Objetivos principais: soluções para cidades inteligentes, casa moderna e projetos de expansão.
-- Rotina e presença: organizar horários de sono, tempo livre e sessão de terapia (ver também: TERAPIAS & REFLEXÕES).
-- [ ] Definir horário fixo e notificação para preencher o caderno (KØR sketch).
 
-> Lote 2026-08-25 · folha 3
+- Definição de caráter: refletir sobre quais comportamentos e atitudes desenvolver para alcançar os objetivos.
+
+- 3 Objetivos principais: soluções para cidades inteligentes, casa moderna e projetos de expansão.
+
+- Rotina e presença: organizar horários de sono, tempo livre e sessão de terapia.

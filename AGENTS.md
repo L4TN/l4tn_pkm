@@ -1,8 +1,12 @@
 # AGENTS.md — Regras do cofre KØR
 
-Vault pessoal KØR (Obsidian). Estrutura fixa:
+Vault pessoal KØR. Estrutura fixa:
 
 - `01_Inbox/` — caixa de entrada (vazio por design; nada vive aqui)
+- `.utils/` — utilidades fora das 4 áreas:
+  - `Rotinas/` — 5 rotinas fixas por dia da semana: `Segunda.md`…`Sexta.md`
+    (dia atípico = nota em DESVIOS abaixo do calendário em `Base-e-Operacao.md`,
+    formatada `dia → troca (detalhe)`)
 - `02_Cofre/` — as **4 áreas fixas** (pilares):
   - `Base-e-Operacao.md`
   - `Corpo-e-Saude.md`
@@ -43,5 +47,7 @@ Vault pessoal KØR (Obsidian). Estrutura fixa:
   ```
 
 - 1 lote por dia, máx. 10 folhas por dia.
+- Links entre notas: markdown padrão `[texto](caminho.md)` com caminho
+  relativo (MarkText). Nunca wikilinks `[[...]]`.
 - Não editar à mão as linhas de rastreabilidade (`> Lote …`).
 - A IA roteia cada nota para **exatamente uma** das 4 áreas.

@@ -26,3 +26,7 @@ Tags: `#saude` `#academia` `#odonto` `#alimentacao`
 ## ALIMENTAÇÃO
 
 * **Cardápio Base:** Frango grelhado, arroz integral e legumes assados. Testar novos preparos no fim de semana.
+
+
+
+fAZER ANALISE DE TESTOSTERONA, SINTO CANSAÇO CONSTANTE O TEMPO TODO NEUROLOGICO

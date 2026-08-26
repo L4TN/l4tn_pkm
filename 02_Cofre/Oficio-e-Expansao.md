@@ -4,6 +4,12 @@ Tags: `#dev` `#trampo` `#estudos`
 
 # Base — Comportamentos de Engenheiro
 
+sE COMETER UM ERRO OU FALHA, E FOR AVISAR SEU HEAD, JA CHEGUE COM A SOLUCAO, ISTO MOSTRA PROATIVIDADE E SOLUCOA RAPIDA, ABRE MENOS PRECEDENTE PRA TE CRITICAREM
+
+Ex.: subi com erro um escopo da API, ja itentifiquei o escopo dcorreto e ja promovi o escopo a PRD, sobe um ajuste hj a noite
+
+Sempre teste cada linha alterada do PR quando estiver indo para PRD, teste com carinho e salve os dados de cada teste para posteriorment emostrar  ou printar via e-mail ou criar teste de integracoa ou unitario
+
 ## 01. Avaliação e gestão de demandas
 
 > Sempre fale apenas daquilo de que tem certeza. Nunca fale do que não tem certeza; argumente com bons argumentos e fatos, não com achismos. Por isso, prefira dizer que vai analisar antes de dizer algo.
@@ -25,24 +31,29 @@ Tags: `#dev` `#trampo` `#estudos`
 ## 02.1 Proatividade Radical — Operar Acima do Esperado
 
 - **Não faça só o que te pedem**. Observe o que ninguém quer fazer, o que está quebrado ou travando o time, e resolva.
+  
   - Task entrou, task saiu — isso é manutenção, não é crescimento.
   - Promoção não vem só por "fazer bem feito". Vem quando você **opera em um nível acima do esperado**.
 
 - **Antecipar problema é diferente de reagir**:
+  
   - Não espera virar incidente ou alguém pedir. Se você já vê que algo vai quebrar, escalar ou travar o time, **você se antecipa e resolve**.
   - Isso é ownership verdadeiro — você assume responsabilidade pelo todo, não só pela sua task.
 
 - **Comunicar o que você faz é fundamental**:
+  
   - Não adianta resolver coisa importante se ninguém sabe. **Mostra contexto, explica decisão, deixa claro o impacto**.
   - Mensagem no chat do time: *"Encontrei X que ia causar Y. Resolvi com Z. Afeta [impacto]. Vejam e validem."*
   - Isso constrói reputação de alguém que **vê além da tarefa**.
 
 - **Puxe responsabilidade que ainda não é sua**:
+  
   - Feature travada? Integração mal feita? Processo ruim? Débito técnico acumulando?
   - Se você tem capacidade de destravar, **você entra no problema**.
   - Não é invadir escopo — é ampliar impacto. O time inteiro ganha.
 
 - **Os 3 gatilhos de proatividade radical**:
+  
   1. **Antecipação**: Vi que quebra, não espero quebrar. Aviso e resolvo.
   2. **Comunicação**: Fiz algo importante? Comunico. Contexto + decisão + impacto.
   3. **Ownership**: Puxo responsabilidade além do esperado se tiver capacidade.
@@ -50,6 +61,7 @@ Tags: `#dev` `#trampo` `#estudos`
 ## 03. Qualidade técnica e depuração
 
 - **Teste e valide tudo que vai para PRD** — e pessoalmente verifique que está funcionando em produção. Cada linha de alteração deve ser justificada; **prefira ajustes mínimos e cirúrgicos**.
+- **Quando o PR estiver indo para PRD, teste cada linha alterada, com carinho** — e **salve os dados de cada teste** para posteriormente mostrar ou printar via e-mail. Se não houver **testes de integração ou unitário**, **crie-os** e formate bem.
 - Antes de rodar e depurar, **leia o código**. Muitas vezes só a leitura já revela o problema — suspeite sempre dos blocos de `if`, onde vivem as regras que mudam o fluxo.
 - Fique atento a **possíveis nullables**: trace onde um valor pode ser nulo e quebrar antes mesmo de ir para o ambiente.
 - Teste **como dev e como usuário**. O caminho feliz valida o fluxo principal — mas **agrida a tela ao máximo**: inputs fora do padrão, fluxos fora de ordem, campos inesperados. Na UI, nada pode estar torto: campos, botões e elementos devem estar visualmente alinhados na régua, sem desvios.
@@ -62,16 +74,19 @@ Tags: `#dev` `#trampo` `#estudos`
 ### Debug e Investigação — Ferramentas e Técnicas
 
 - **Use Notepad++ para investigar problemas de encode e caracteres ocultos**:
+  
   - Problemas de encoding (UTF-8, Latin-1, etc) costumam deixar caracteres "invisíveis" no código que quebram tudo.
   - Notepad++ mostra exatamente esses caracteres ocultos — espaços, tabs, BOM, line breaks estranhos.
   - Ative "View → Show Symbol" para revelar o que está realmente lá. Muitas vezes o problema é um espaço invisível ou quebra de linha errada que você não consegue ver em outro editor.
 
 - **Se algo deu problema e já estava lá há muito tempo no código**:
+  
   - Suspeita: **algo de fora ou em volta mudou recentemente**, não o código em si.
   - Investigue: mudança de input, atualização de dependência, alteração na base de dados, mudança de ambiente, configuração diferente.
   - O código que funcionava por 6 meses não quebrou sozinho. Algo externo mudou. Trace o contexto.
 
 - **Notepad++ é também uma ferramenta de produção**:
+  
   - Use para escrever e revisar tasks em `.md` — markdown puro é melhor do que tools pesados.
   - Use para estruturar prompts e outputs de AI Generativa (Prompt Engineering): crie em `.md`, revise no editor, depois passe para a IA revisar e refinar.
   - Markdown limpo + Notepad++ = velocidade máxima em documentação e preparação de contexto para IA.
@@ -113,6 +128,7 @@ Tags: `#dev` `#trampo` `#estudos`
 ## 07. Alinhamento com time e cobertura
 
 - Alinhe tudo com seu head antes de executar — **nunca o atropele**. Coisas que o usuário tenta empurrar sem alinhamento devem ser escaladas.
+- **Se cometeu um erro ou falha e precisa avisar o head, já chegue com a solução** — mostra proatividade, solução rápida e abre menos precedente pra te criticarem. Ex.: *"Subi com erro um escopo da API, já identifiquei o escopo correto e já promovi o escopo a PRD, sobe um ajuste hoje à noite."*
 - Quando estiver travado, consulte rapidamente os sêniors. A dúvida resolvida cedo gera velocidade; a dúvida guardada gera retrabalho.
 - Mantenha **amizade genuína com o time** — eles ampliam sua capacidade. Com usuários, mantenha profissionalismo.
 - Peça feedback regularmente aos seus pares e principalmente ao seu gestor. **Não espere a avaliação formal** — vá atrás. Quem pede feedback sinaliza maturidade e se posiciona melhor para crescer.
@@ -163,6 +179,7 @@ Tags: `#dev` `#trampo` `#estudos`
 - **Seja totalmente autogerenciado**. Você é seu próprio gestor — não espere supervisor, deadline externo ou validação para se organizar. Autodisciplina é diferencial de dev 10x.
 - **Organize seu dia em blocos de trabalho**. Agrupe tarefas por tipo e proteja períodos contínuos para trabalho profundo. Isso reduz custo de contexto e amplifica produtividade.
 - **Sempre priorize função sobre forma**. Notas simples em papel ou markdown enxuto funcionam melhor que documentação perfeita nunca iniciada. O que funciona agora vale mais que o que seria perfeito amanhã.
+- **Paralisia por análise é real** — se detalhar está te impedindo de iniciar, liste os pontos de demanda em markdown puro (Notepad++) e comece; refine depois.
 - **Comece sempre com a solução mais simples possível**; refine e rebusque *depois* de garantir o básico funcionando. Evite a armadilha da preparação excessiva — é procrastinação disfarçada de perfeccionismo.
 - **Economize energia cognitiva** aplicando rigorosamente as técnicas descritas no guia de produtividade (`Produtividade.md`: blocos de tempo, priorização, redução de complexidade). Sistematizar workflows economiza combustível mental para o que realmente importa.
 - **Entenda seu verdadeiro diferencial**. Você não vence em código — dev indiano sabe mais, IA programa melhor. Sua vantagem é irreplicável: disponibilidade, rosto, voz, presença. O capital humano que você oferece é o que máquinas não conseguem entregar.
@@ -211,6 +228,7 @@ Tags: `#dev` `#trampo` `#estudos`
 **Must/Should/Want**: equilibrar obrigações com motivação (ex.: 4h Must, 2h Should, 1h Want). Evita burnout.
 
 **Scrum Poker + Eisenhower** (priorização com critério objetivo):
+
 1. Eisenhower → peso: Imp+Urg=4, Imp+NãoUrg=3, NãoImp+Urg=2, NãoImp+NãoUrg=1
 2. Estime esforço com Fibonacci (1, 2, 3, 5, 8, 13)
 3. `Score = Peso ÷ Esforço` → score alto sobe na lista
@@ -249,32 +267,32 @@ Tags: `#dev` `#trampo` `#estudos`
 
 ## Comparação geral
 
-| Técnica | Tipo | Melhor para | Desvantagem |
-|---|---|---|---|
-| Pomodoro | Tempo | Iniciantes, tarefas pequenas | Estruturado demais p/ Deep Work |
-| GTD | Completo | Muitas tarefas, reduzir ansiedade | Curva de aprendizado |
-| 52/17 | Tempo | Ritmos biológicos | Inflexível |
-| Time Blocking | Agendamento | Foco por tipo de trabalho | Requer flexibilidade |
-| Timeboxing | Tempo | Combater perfeccionismo | Pode sacrificar qualidade |
-| Eisenhower | Priorização | Urgência vs importância | Subjetivo |
-| ABCDE | Priorização | Granularidade fina | Muitos A's paralisam |
-| MoSCoW | Priorização | Escopo de sprints | Requer consenso |
-| Pareto 80/20 | Priorização | Maior impacto | Requer dados reais |
-| Must/Should/Want | Priorização | Equilíbrio/motivação | Subjetivo |
-| Scrum Poker | Estimativa | Esforço relativo | Não mede tempo |
-| Ivy Lee 6 | Listas | Simplicidade + foco diário | Rígido |
-| Bullet Journal | Listas | Registro flexível | Manual, difícil de buscar |
-| Kanban | Visual | Fluxo visual | WIP management |
-| AutoFocus | Listas | Flexibilidade | Pode parecer caótico |
-| Do It Tomorrow | Listas | Dias com interrupções | Acumula amanhã |
-| FVP | Listas | Decisões difíceis | Processo mais lento |
-| Deep Work | Foco | Alta qualidade cognitiva | Requer ambiente controlado |
-| Flowtime | Foco | Trabalho criativo | Menos disciplina |
-| BPT | Foco/Energia | Otimizar picos de energia | 3+ semanas de setup |
-| A4 Macro→Micro | Estratégia | Clareza de visão | Atualização semanal |
-| Don't Break the Chain | Hábitos | Consistência | Uma quebra desmoraliza |
-| Eat the Frog | Hábitos | Vencer procrastinação | Pressão matinal |
-| Tiny Habits | Hábitos | Iniciar comportamentos | Não garante crescimento |
+| Técnica               | Tipo         | Melhor para                       | Desvantagem                     |
+| --------------------- | ------------ | --------------------------------- | ------------------------------- |
+| Pomodoro              | Tempo        | Iniciantes, tarefas pequenas      | Estruturado demais p/ Deep Work |
+| GTD                   | Completo     | Muitas tarefas, reduzir ansiedade | Curva de aprendizado            |
+| 52/17                 | Tempo        | Ritmos biológicos                 | Inflexível                      |
+| Time Blocking         | Agendamento  | Foco por tipo de trabalho         | Requer flexibilidade            |
+| Timeboxing            | Tempo        | Combater perfeccionismo           | Pode sacrificar qualidade       |
+| Eisenhower            | Priorização  | Urgência vs importância           | Subjetivo                       |
+| ABCDE                 | Priorização  | Granularidade fina                | Muitos A's paralisam            |
+| MoSCoW                | Priorização  | Escopo de sprints                 | Requer consenso                 |
+| Pareto 80/20          | Priorização  | Maior impacto                     | Requer dados reais              |
+| Must/Should/Want      | Priorização  | Equilíbrio/motivação              | Subjetivo                       |
+| Scrum Poker           | Estimativa   | Esforço relativo                  | Não mede tempo                  |
+| Ivy Lee 6             | Listas       | Simplicidade + foco diário        | Rígido                          |
+| Bullet Journal        | Listas       | Registro flexível                 | Manual, difícil de buscar       |
+| Kanban                | Visual       | Fluxo visual                      | WIP management                  |
+| AutoFocus             | Listas       | Flexibilidade                     | Pode parecer caótico            |
+| Do It Tomorrow        | Listas       | Dias com interrupções             | Acumula amanhã                  |
+| FVP                   | Listas       | Decisões difíceis                 | Processo mais lento             |
+| Deep Work             | Foco         | Alta qualidade cognitiva          | Requer ambiente controlado      |
+| Flowtime              | Foco         | Trabalho criativo                 | Menos disciplina                |
+| BPT                   | Foco/Energia | Otimizar picos de energia         | 3+ semanas de setup             |
+| A4 Macro→Micro        | Estratégia   | Clareza de visão                  | Atualização semanal             |
+| Don't Break the Chain | Hábitos      | Consistência                      | Uma quebra desmoraliza          |
+| Eat the Frog          | Hábitos      | Vencer procrastinação             | Pressão matinal                 |
+| Tiny Habits           | Hábitos      | Iniciar comportamentos            | Não garante crescimento         |
 
 ---
 
@@ -282,26 +300,26 @@ Tags: `#dev` `#trampo` `#estudos`
 
 Todas as técnicas são variações de 6 mecanismos (Poulin: "são componentes, não sistemas — mesmos blocos funcionais, rótulos diferentes"). Escolha **uma técnica por fundamento**.
 
-| Fundamento | Técnicas | Pergunta |
-|---|---|---|
-| **Clareza de prioridade** | Eisenhower, ABCDE, MoSCoW, Pareto, FVP, Poker, Must/Should/Want | "O que importa mais?" |
-| **Limitação de escopo** | Ivy Lee 6, Do It Tomorrow, Kanban WIP, A4, MoSCoW | "Quanto é demais?" |
-| **Gestão de energia/atenção** | Pomodoro, 52/17, Timeboxing, Blocking, Deep Work, Flowtime, BPT | "Quando focar?" |
-| **Externalização cognitiva** | GTD, Bullet Journal, Kanban, A4, Ivy Lee 6 | "Isso precisa estar na cabeça?" (memória de trabalho: 7±2, Miller) |
-| **Consistência comportamental** | Chain, Eat the Frog, Tiny Habits | "Como garantir que eu faça?" |
-| **Organização sistêmica** | GTD, Kanban, Poker, A4, Time Blocking | "Onde isso vive no sistema?" |
+| Fundamento                      | Técnicas                                                        | Pergunta                                                           |
+| ------------------------------- | --------------------------------------------------------------- | ------------------------------------------------------------------ |
+| **Clareza de prioridade**       | Eisenhower, ABCDE, MoSCoW, Pareto, FVP, Poker, Must/Should/Want | "O que importa mais?"                                              |
+| **Limitação de escopo**         | Ivy Lee 6, Do It Tomorrow, Kanban WIP, A4, MoSCoW               | "Quanto é demais?"                                                 |
+| **Gestão de energia/atenção**   | Pomodoro, 52/17, Timeboxing, Blocking, Deep Work, Flowtime, BPT | "Quando focar?"                                                    |
+| **Externalização cognitiva**    | GTD, Bullet Journal, Kanban, A4, Ivy Lee 6                      | "Isso precisa estar na cabeça?" (memória de trabalho: 7±2, Miller) |
+| **Consistência comportamental** | Chain, Eat the Frog, Tiny Habits                                | "Como garantir que eu faça?"                                       |
+| **Organização sistêmica**       | GTD, Kanban, Poker, A4, Time Blocking                           | "Onde isso vive no sistema?"                                       |
 
 ## Stack mínimo recomendado
 
 Usar todas as técnicas cria regras e fricções demais. Use **uma por fundamento**:
 
-| Fundamento | Recomendado |
-|---|---|
-| Estratégia + Escopo | **A4 Macro → Micro** |
-| Prioridade | **Eisenhower + Scrum Poker** |
-| Execução diária | **Ivy Lee 6** |
-| Foco | **Deep Work no BPT** |
-| Consistência | **Don't Break the Chain** |
+| Fundamento          | Recomendado                  |
+| ------------------- | ---------------------------- |
+| Estratégia + Escopo | **A4 Macro → Micro**         |
+| Prioridade          | **Eisenhower + Scrum Poker** |
+| Execução diária     | **Ivy Lee 6**                |
+| Foco                | **Deep Work no BPT**         |
+| Consistência        | **Don't Break the Chain**    |
 
 Regra de adição: dor real → fundamento já coberto? (substitua, não adicione) → teste 2 semanas → nunca por curiosidade.
 
@@ -314,6 +332,7 @@ Regra de adição: dor real → fundamento já coberto? (substitua, não adicion
 - **Avançado**: Ivy Lee 6 + A4 + BPT + Deep Work + FVP + Chain. Use FVP quando o Ivy Lee não resolver conflitos.
 
 ### Fluxo diário integrado
+
 ```
 NOITE (10 min):  Ivy Lee 6 para amanhã; revisar BPT (quando é o pico?)
 MANHÃ (Deep Work): tarefa #1 em Pomodoro 50/5 × 3, sem slack/e-mail
@@ -333,35 +352,3 @@ FIM DO DIA (10 min): quantas do Ivy Lee completei? o que bloqueou? lista de aman
 - **5 min com o colega** (nada de celular) — treina o cérebro a não procrastinar.
 - **Pomodoro só para tarefas complexas**; resto: celular com timer e planner.
 - **Profissional guiado** (executa tarefas simples revisáveis) vs **coordenado** (desenha do início ao fim). Bom profissional faz os dois; revise o desenho em pares, com feedbacks simultâneos, antes de colocar a mão no código.
-
-
----
-
-## [2026-08-24 23:29] Anotações sobre Cândido Portinari
-
-- Biografia de Cândido Portinari:
-  - Data de nascimento anotada: 30 de dezembro de 1930
-  - Mudou-se de São Paulo aos 15 anos de idade
-
-> 📄 Lote 2026-08-24 · folha 1 · lida com confiança
-
-
----
-
-## [2026-08-25 09:22] Anotações Biográficas sobre Cândido Portinari
-
-- Dados biográficos sobre Cândido Portinari.
-- Registro de nascimento em 30 de dezembro de 1930.
-- Mudança: Deixou São Paulo aos 15 anos de idade para fixar nova residência.
-
-> 📄 Lote 2026-08-25 · folha 1 · lida com confiança
-
-
----
-
-## [2026-08-25 09:59] Estudos sobre Cândido Portinari
-
-- Anotação biográfica sobre Cândido Portinari (registro de nascimento em 30 de dezembro de 1930).
-- Deixou São Paulo aos 15 anos para fixar residência em outra localidade.
-
-> 📄 Lote 2026-08-25 · folha 1
