@@ -48,6 +48,7 @@ O material separa:
 | [26-observabilidade-health-checks-e-operacao.md](26-observabilidade-health-checks-e-operacao.md) | Logs, telemetria, health checks e operação |
 | [27-catalogo-de-padroes-e-antipadroes.md](27-catalogo-de-padroes-e-antipadroes.md) | Catálogo de padrões fortes e riscos de cópia |
 | [28-enums-e-arquivos-centrais.md](28-enums-e-arquivos-centrais.md) | Enums, `DescriptionAttribute` e arquivos de alavanca |
+| [29-automapper-e-mapeamento.md](29-automapper-e-mapeamento.md) | Profiles, projeções, updates e traduções de contratos |
 
 ## Ordem de leitura recomendada
 

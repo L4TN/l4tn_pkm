@@ -35,6 +35,7 @@ de milhares de linhas.
 - [Observabilidade e operação](prisma_service_doc/26-observabilidade-health-checks-e-operacao.md)
 - [Catálogo de padrões e anti-padrões](prisma_service_doc/27-catalogo-de-padroes-e-antipadroes.md)
 - [Enums e arquivos centrais](prisma_service_doc/28-enums-e-arquivos-centrais.md)
+- [AutoMapper e mapeamento](prisma_service_doc/29-automapper-e-mapeamento.md)
 
 ## Escopo
 
