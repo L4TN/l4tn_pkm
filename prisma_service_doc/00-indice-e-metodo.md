@@ -29,6 +29,24 @@ O material separa:
 | [07-arquivos-exemplares.md](07-arquivos-exemplares.md) | Exemplos canônicos por pasta |
 | [08-mapa-de-pastas.md](08-mapa-de-pastas.md) | Árvore comentada da solução e das camadas |
 | [09-analise-profunda-patterns.md](09-analise-profunda-patterns.md) | Relações entre os mecanismos, pontos fortes e padrões avançados |
+| [10-runtime-e-composition-root.md](10-runtime-e-composition-root.md) | APIs, WebJobs e composition root |
+| [11-pipeline-http-e-contratos-de-resposta.md](11-pipeline-http-e-contratos-de-resposta.md) | Pipeline HTTP, identidade e respostas centralizadas |
+| [12-dominios-de-negocio.md](12-dominios-de-negocio.md) | Famílias funcionais e navegação por domínio |
+| [13-fluxos-de-consolidacao.md](13-fluxos-de-consolidacao.md) | Escopo, datas, relatórios, filas e concorrência |
+| [14-fluxos-de-posicao-e-performance.md](14-fluxos-de-posicao-e-performance.md) | Posição temporal e indicadores |
+| [15-fluxos-de-precos-e-reconciliacao.md](15-fluxos-de-precos-e-reconciliacao.md) | Preços, matching e reconciliação |
+| [16-fluxos-de-receitas-e-auditoria.md](16-fluxos-de-receitas-e-auditoria.md) | Receitas, auditoria e arquivos |
+| [17-persistencia-e-contextos.md](17-persistencia-e-contextos.md) | DbContexts, mappings, repositories e integridade |
+| [18-patterns-de-query-e-performance.md](18-patterns-de-query-e-performance.md) | Projeção, tracking, batch e MemoryJoin |
+| [19-auditoria-transacoes-e-integridade.md](19-auditoria-transacoes-e-integridade.md) | Transações, constraints, locks e auditoria |
+| [20-catalogo-de-integracoes.md](20-catalogo-de-integracoes.md) | Parceiros, mTLS, HttpClients e health checks |
+| [21-runtime-de-webjobs.md](21-runtime-de-webjobs.md) | Workers, cron, scopes e shutdown |
+| [22-filas-consumidores-e-processamento-assincrono.md](22-filas-consumidores-e-processamento-assincrono.md) | Fila de banco, Service Bus, retry e idempotência |
+| [23-idempotencia-retry-e-reprocessamento.md](23-idempotencia-retry-e-reprocessamento.md) | Contratos de repetição e reprocessamento |
+| [24-configuracao-options-e-feature-flags.md](24-configuracao-options-e-feature-flags.md) | Options, banco, segredos e feature flags |
+| [25-seguranca-autenticacao-e-autorizacao.md](25-seguranca-autenticacao-e-autorizacao.md) | Claims, autorização, escopo de cliente e TLS |
+| [26-observabilidade-health-checks-e-operacao.md](26-observabilidade-health-checks-e-operacao.md) | Logs, telemetria, health checks e operação |
+| [27-catalogo-de-padroes-e-antipadroes.md](27-catalogo-de-padroes-e-antipadroes.md) | Catálogo de padrões fortes e riscos de cópia |
 
 ## Ordem de leitura recomendada
 
