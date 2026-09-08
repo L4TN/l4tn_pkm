@@ -49,6 +49,11 @@ O material separa:
 | [27-catalogo-de-padroes-e-antipadroes.md](27-catalogo-de-padroes-e-antipadroes.md) | Catálogo de padrões fortes e riscos de cópia |
 | [28-enums-e-arquivos-centrais.md](28-enums-e-arquivos-centrais.md) | Enums, `DescriptionAttribute` e arquivos de alavanca |
 | [29-automapper-e-mapeamento.md](29-automapper-e-mapeamento.md) | Profiles, projeções, updates e traduções de contratos |
+| [30-extensions-e-linguagem-de-dominio.md](30-extensions-e-linguagem-de-dominio.md) | Extensions, expressions e filtros dinâmicos |
+| [31-validacao-e-mensagens-de-dominio.md](31-validacao-e-mensagens-de-dominio.md) | FluentValidation e catálogo de mensagens |
+| [32-cache-redis-e-camadas-de-leitura.md](32-cache-redis-e-camadas-de-leitura.md) | Redis, compressão, TTL e cache por scope |
+| [33-datalake-parquet-e-leitura-analitica.md](33-datalake-parquet-e-leitura-analitica.md) | Blob, Parquet, projeção de colunas e scopes |
+| [34-mensageria-e-contratos.md](34-mensageria-e-contratos.md) | Service Bus, envelope e correlação |
 
 ## Ordem de leitura recomendada
 

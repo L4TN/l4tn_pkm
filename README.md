@@ -36,6 +36,11 @@ de milhares de linhas.
 - [Catálogo de padrões e anti-padrões](prisma_service_doc/27-catalogo-de-padroes-e-antipadroes.md)
 - [Enums e arquivos centrais](prisma_service_doc/28-enums-e-arquivos-centrais.md)
 - [AutoMapper e mapeamento](prisma_service_doc/29-automapper-e-mapeamento.md)
+- [Extensions e linguagem de domínio](prisma_service_doc/30-extensions-e-linguagem-de-dominio.md)
+- [Validação e mensagens de domínio](prisma_service_doc/31-validacao-e-mensagens-de-dominio.md)
+- [Cache Redis](prisma_service_doc/32-cache-redis-e-camadas-de-leitura.md)
+- [Datalake e Parquet](prisma_service_doc/33-datalake-parquet-e-leitura-analitica.md)
+- [Mensageria e contratos](prisma_service_doc/34-mensageria-e-contratos.md)
 
 ## Escopo
 
