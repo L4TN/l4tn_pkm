@@ -47,6 +47,7 @@ O material separa:
 | [25-seguranca-autenticacao-e-autorizacao.md](25-seguranca-autenticacao-e-autorizacao.md) | Claims, autorização, escopo de cliente e TLS |
 | [26-observabilidade-health-checks-e-operacao.md](26-observabilidade-health-checks-e-operacao.md) | Logs, telemetria, health checks e operação |
 | [27-catalogo-de-padroes-e-antipadroes.md](27-catalogo-de-padroes-e-antipadroes.md) | Catálogo de padrões fortes e riscos de cópia |
+| [28-enums-e-arquivos-centrais.md](28-enums-e-arquivos-centrais.md) | Enums, `DescriptionAttribute` e arquivos de alavanca |
 
 ## Ordem de leitura recomendada
 
