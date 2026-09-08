@@ -279,6 +279,82 @@ var queryBoletas = _context.TbBoleta
 
 ### 4.6 Exceções de domínio → HTTP status em um lugar só
 
+#### Como o Prisma mantém as Controllers mais limpas
+
+A API registra `ApplicationApiHandler` como filtro MVC global em `PrismaService/Startup.cs`:
+
+```csharp
+services.AddScoped<ApplicationApiHandler>();
+services.AddMvc(options =>
+{
+    options.Filters.Add<ApplicationApiHandler>();
+});
+```
+
+Com isso, o ASP.NET executa o mesmo filtro para as Controllers. O fluxo fica dividido em duas fases:
+
+```text
+Request HTTP
+  -> Authentication
+  -> DomainConfigMiddleware
+  -> ApplicationApiHandler.OnActionExecuting
+       autorização, cache de permissões e timer
+  -> Controller
+       chama BSN e retorna resultado ou lança exceção de domínio
+  -> ApplicationApiHandler.OnActionExecuted
+       status HTTP, payload, logging e medição
+  -> Response HTTP
+```
+
+Antes da action, `OnActionExecuting` centraliza a autorização por path, grupos, funcionalidades,
+usuários externos e escopo de cliente. Depois da action, `OnActionExecuted` converte exceções tipadas
+em respostas HTTP e marca `context.ExceptionHandled = true`.
+
+A Controller, portanto, não precisa repetir este padrão em cada endpoint:
+
+```csharp
+try
+{
+    return await _clienteBsn.GetAsync(id);
+}
+catch (CustomNotFoundException ex)
+{
+    return NotFound(new { ex.Message });
+}
+catch (CustomValidationException ex)
+{
+    return BadRequest(new { ex.Message });
+}
+```
+
+O formato pretendido é mais simples:
+
+```csharp
+public async Task<ClienteResponse> GetAsync(int id)
+{
+    var cliente = await _clienteBsn.GetAsync(id);
+
+    if (cliente is null)
+        throw new CustomNotFoundException("Cliente não encontrado.");
+
+    return cliente;
+}
+```
+
+A Controller comunica a intenção por meio do tipo da exceção; o filtro conhece o protocolo HTTP. Isso
+separa regra de negócio de apresentação:
+
+```text
+BSN/Domain: "o cliente não existe" -> CustomNotFoundException
+Filtro MVC: CustomNotFoundException -> 404 + payload
+```
+
+O padrão não torna todas as Controllers do Prisma limpas automaticamente. A análise encontrou Controllers
+DevEx que ainda injetam `DbContext`, fazem projeções EF, validam dados e persistem diretamente. O filtro
+remove o código transversal, mas não elimina o acoplamento de Controllers antigas ao banco. Por isso,
+a recomendação é migrar gradualmente a regra para BSNs e repositories, sem confundir a existência do filtro
+com uma arquitetura já totalmente aplicada.
+
 O mesmo filtro converte exceção em resposta HTTP no `OnActionExecuted`. É por isso que muitas controllers
 não precisam de `try/catch`:
 
