@@ -1,0 +1,843 @@
+# Prisma Service — Como o AutoMapper fica invisível
+
+Por que controllers têm **zero** chamadas a `Map`, BSNs têm apenas 52, e mesmo assim tudo é convertido.
+
+Todos os exemplos são código real do repositório.
+
+---
+
+## Sumário
+
+1. [O panorama em números](#1-o-panorama-em-números)
+2. [As 5 camadas de invisibilidade](#2-as-5-camadas-de-invisibilidade)
+3. [Rastreamento completo: um CRUD ponta a ponta](#3-rastreamento-completo-um-crud-ponta-a-ponta)
+4. [Nível 1 — Model binding: HTTP → Request](#4-nível-1--model-binding-http--request)
+5. [Nível 2 — `ProjectTo` no repositório: Entity → Response](#5-nível-2--projectto-no-repositório-entity--response)
+6. [Nível 3 — `*FromMapAsync`: Request → Entity](#6-nível-3--frommapasync-request--entity)
+7. [Nível 4 — `IgnoreAllNull`: PATCH sem código de PATCH](#7-nível-4--ignoreallnull-patch-sem-código-de-patch)
+8. [Nível 5 — `IMapper` como propriedade herdada](#8-nível-5--imapper-como-propriedade-herdada)
+9. [Quando o Map reaparece: os 52 casos](#9-quando-o-map-reaparece-os-52-casos)
+10. [`CreateProjection` e `IncludeMembers`](#10-createprojection-e-includemembers)
+11. [A organização do profile](#11-a-organização-do-profile)
+12. [O preço da invisibilidade](#12-o-preço-da-invisibilidade)
+13. [Receita para replicar](#13-receita-para-replicar)
+
+---
+
+## 1. O panorama em números
+
+| Métrica | Valor |
+|---|---:|
+| Chamadas a `Mapper.Map` em **controllers** (204 arquivos) | **0** |
+| Chamadas a `Mapper.Map` em **BSNs** (177 arquivos) | 52 |
+| Chamadas a `ProjectTo` no `Core` | 57 |
+| `CreateMap` no `ApplicationMapperProfile` | 92 |
+| `CreateProjection` (Application + Domain) | 17 |
+| `IgnoreAllNull()` aplicado | 17 |
+| `ReverseMap()` | 7 |
+| Profiles registrados | 4 |
+
+Zero nas controllers não é disciplina de código review. É consequência de o mapeamento ter sido
+**empurrado para baixo**, para dentro das classes base.
+
+---
+
+## 2. As 5 camadas de invisibilidade
+
+```
+┌─────────────────────────────────────────────────────────────────┐
+│  HTTP (JSON)                                                    │
+│      ↓  NÍVEL 1 — Model binding do ASP.NET (não é AutoMapper)   │
+│  CaracteristicaRequest                                          │
+└─────────────────────────────────────────────────────────────────┘
+                              ↓
+┌─────────────────────────────────────────────────────────────────┐
+│  CONTROLLER — repassa o Request cru para o BSN. 0 Map.          │
+└─────────────────────────────────────────────────────────────────┘
+                              ↓
+┌─────────────────────────────────────────────────────────────────┐
+│  BSN — chama um método do repositório. 0 Map no caso comum.     │
+└─────────────────────────────────────────────────────────────────┘
+                              ↓
+┌─────────────────────────────────────────────────────────────────┐
+│  BaseWriteRepository                                            │
+│      NÍVEL 3 — CreateFromMapAsync / UpdateFromMapAsync          │
+│      NÍVEL 4 — IgnoreAllNull faz o update ser parcial           │
+│  BaseReadRepository                                             │
+│      NÍVEL 2 — ProjectTo vira SQL, não conversão em memória     │
+└─────────────────────────────────────────────────────────────────┘
+                              ↑
+        NÍVEL 5 — IMapper vem de propriedade herdada da base,
+                  não aparece em construtor nenhum
+```
+
+---
+
+## 3. Rastreamento completo: um CRUD ponta a ponta
+
+O melhor exemplo do repositório é o CRUD de Característica (CRM). Vou mostrar **todo** o caminho.
+
+### 3.1 A controller (`CRMCampanhaController.cs`)
+
+```csharp
+#region Crud Caracteristica
+
+[HttpGet("Caracteristica")]
+public async Task<ActionResult<List<CaracteristicaResponse>>> RetornaCaracteristicasAsync()
+{
+    return Ok(await _crmCampanhaBsn.RetornaCaracteristicasAsync(HttpContext.RequestAborted));
+}
+
+[HttpPost("Caracteristica")]
+public async Task<IActionResult> InsereCaracteristicaAsync([FromBody] CaracteristicaRequest request)
+{
+    await _crmCampanhaBsn.InsereCaracteristicaAsync(request, HttpContext.RequestAborted);
+    return StatusCode(StatusCodes.Status201Created);
+}
+
+[HttpPut("Caracteristica")]
+public async Task<IActionResult> AtualizaCaracteristicaAsync([FromQuery] int id, [FromBody] CaracteristicaRequest request)
+{
+    await _crmCampanhaBsn.AtualizaCaracteristicaAsync(id, request, HttpContext.RequestAborted);
+    return NoContent();
+}
+
+[HttpDelete("Caracteristica")]
+public async Task<IActionResult> DeletaCaracteristicaAsync([FromQuery] int id)
+{
+    await _crmCampanhaBsn.DeletaCaracteristicaAsync(id, HttpContext.RequestAborted);
+    return NoContent();
+}
+#endregion
+```
+
+**Quatro actions, uma linha cada.** Nenhum `Map`, nenhum `try/catch`, nenhum `if`.
+O `Request` chega pronto e sai inteiro para o BSN.
+
+### 3.2 O BSN (`CrmCampanhaBsn.cs`)
+
+```csharp
+public async Task<List<CaracteristicaResponse>> RetornaCaracteristicasAsync(CancellationToken cancellationToken = default)
+{
+    return await _tbCaracteristicaRepository.FindAllProjectToAsync<CaracteristicaResponse>(null, cancellationToken);
+}
+
+public async Task InsereCaracteristicaAsync(CaracteristicaRequest request, CancellationToken cancellationToken = default)
+{
+    await _tbCaracteristicaRepository.CreateFromMapAsync(request, cancellationToken);
+}
+
+public async Task AtualizaCaracteristicaAsync(int id, CaracteristicaRequest request, CancellationToken cancellationToken = default)
+{
+    await _tbCaracteristicaRepository.UpdateFromMapAsync(x => x.IdCaracteristica == id, request, cancellationToken);
+}
+
+public async Task DeletaCaracteristicaAsync(int id, CancellationToken cancellationToken = default)
+{
+    await _tbCaracteristicaRepository.DeleteAsync(x => x.IdCaracteristica == id, cancellationToken);
+}
+```
+
+**Também uma linha cada.** O BSN não conhece `TbCaracteristica` no caminho de leitura, e não
+constrói a entidade no caminho de escrita. Ele passa o `Request` e o repositório resolve.
+
+### 3.3 Os contratos
+
+```csharp
+// Application/Models/Crm/CaracteristicaRequest.cs
+public class CaracteristicaRequest
+{
+    public string Descricao { get; set; }
+    public int    IdTipoCaracteristica { get; set; }
+}
+
+// Application/Models/Crm/CaracteristicaResponse.cs
+public class CaracteristicaResponse
+{
+    public int      IdCaracteristica { get; set; }
+    public string   Descricao { get; set; }
+    public int      IdTipoCaracteristica { get; set; }
+    public string   Nome { get; set; }
+    public string   DescNome { get; set; }
+
+    public string   IdUsu { get; set; }      // vem da auditoria automática
+    public DateTime DtCpu { get; set; }
+}
+```
+
+### 3.4 O único lugar onde o mapeamento é declarado
+
+```csharp
+// Application/Mapper/ApplicationMapperProfile.cs → método CRM()
+CreateMap<TbCaracteristica, CaracteristicaResponse>();
+
+CreateMap<CaracteristicaRequest, TbCaracteristica>()
+    .ForMember(d => d.IdTipoCaracteristica, o => o.Condition(s => s.IdTipoCaracteristica > 0))
+    .IgnoreAllNull();
+```
+
+**Três linhas cobrem o CRUD inteiro.** A leitura é convenção pura (nomes batem). A escrita tem duas
+regras: não sobrescreve FK com zero, e ignora nulo (item 7).
+
+### 3.5 O balanço
+
+```
+Controller:  4 actions × 1 linha  = 4 linhas
+BSN:         4 métodos × 1 linha  = 4 linhas
+Profile:     3 linhas
+────────────────────────────────────────────
+Total:      11 linhas para um CRUD completo com auditoria
+```
+
+Um CRUD equivalente escrito "à mão" — com `new TbCaracteristica { ... }` no create, carregar-e-atribuir
+campo a campo no update, e `Select(x => new CaracteristicaResponse { ... })` na leitura — passa
+fácil de 80 linhas. E cada campo novo exigiria tocar em três lugares.
+
+---
+
+## 4. Nível 1 — Model binding: HTTP → Request
+
+Este nem é AutoMapper, mas é o primeiro mapeamento invisível e vale nomear, porque é onde muita gente
+acha que precisa de código.
+
+```csharp
+[HttpPut("Caracteristica")]
+public async Task<IActionResult> AtualizaCaracteristicaAsync(
+    [FromQuery] int id,                        // ← da query string
+    [FromBody] CaracteristicaRequest request)  // ← do corpo JSON
+```
+
+O ASP.NET desserializa o JSON e valida DataAnnotations antes de a action rodar. O que chega no primeiro
+código do projeto já é objeto tipado.
+
+Onde o projeto complica isso de propósito é no DevExtreme:
+
+```csharp
+public async Task<IActionResult> GetCarteiras(
+    DataSourceLoadOptions loadOptions,           // ← binder do DevExtreme monta filtro/sort/paginação
+    [FromQuery] GetSolicitacoesRequest req)
+```
+
+`DataSourceLoadOptions` é um binder de terceiro que transforma os parâmetros do grid
+(`?filter=[...]&sort=[...]&skip=20&take=20`) num objeto de consulta. Depois o `DataSourceLoader.LoadAsync`
+aplica isso sobre o `IQueryable`. É mapeamento invisível também — só que acopla a API ao front.
+
+---
+
+## 5. Nível 2 — `ProjectTo` no repositório: Entity → Response
+
+O mecanismo mais importante. Está na base de leitura:
+
+```csharp
+// Core/Repository.Common/Repositories/BaseReadRepository.cs
+protected IQueryable<TResult> FindAllQuerableProjectTo<TResult>(Expression<Func<TEntity, bool>> expression = null)
+{
+    return FindAllQuerable(expression, true)                   // true = AsNoTracking
+        .ProjectTo<TResult>(Mapper.ConfigurationProvider);
+}
+
+public Task<List<TResult>> FindAllProjectToAsync<TResult>(
+    Expression<Func<TEntity, bool>> expression = null, CancellationToken cancellationToken = default)
+{
+    return FindAllQuerableProjectTo<TResult>(expression).ToListAsync(cancellationToken);
+}
+
+public Task<TResult> FirstOrDefaultProjectToAsync<TResult>(
+    Expression<Func<TEntity, bool>> expression = null, CancellationToken cancellationToken = default)
+{
+    return FindAllQuerableProjectTo<TResult>(expression).FirstOrDefaultAsync(cancellationToken);
+}
+```
+
+### Por que `ProjectTo` ≠ `Map`
+
+```csharp
+// ❌ Map: 2 passos, traz tudo
+var entidades = await _repo.FindAllAsync(x => x.FlAtivo);   // SELECT * (todas as colunas)
+var dtos = Mapper.Map<List<CaracteristicaResponse>>(entidades);  // converte em memória
+
+// ✅ ProjectTo: 1 passo, traz o necessário
+var dtos = await _repo.FindAllProjectToAsync<CaracteristicaResponse>(x => x.FlAtivo);
+// SELECT Id_Caracteristica, Descricao, Id_Tipo_Caracteristica, ... (só o que o destino tem)
+```
+
+O AutoMapper traduz o perfil em `Expression` e o EF Core o incorpora na árvore da query. **O mapeamento
+vira parte do SQL.** Se o `Response` tem 7 campos e a entidade tem 30 colunas, o banco devolve 7.
+
+### Uso direto no BSN quando a query é composta
+
+Quando há filtro complexo antes da projeção, o BSN chama `ProjectTo` na mão — mas ainda como última
+etapa do `IQueryable`, nunca sobre lista materializada:
+
+```csharp
+// Application/BSN/Trade/BoletasMargemBsn.cs
+var query = /* ... joins, MemoryJoin, filtros de autorização ... */
+    .Where(b => ((IndicadoresBoleta)b.BitIndicadores).HasFlag(IndicadoresBoleta.FlBoletaMargem));
+
+if (expression != null)
+    query = query.Where(expression);
+
+return query.ProjectTo<BoletaLookupResponse>(Mapper.ConfigurationProvider)
+            .ToListAsync(cancellationToken);
+```
+
+E há o caso de devolver `IQueryable` já projetado, para quem chamou continuar compondo:
+
+```csharp
+// Application/BSN/Receitas/ReceitasBsn.cs
+public IQueryable<CategoriaProdutoDto> GetCategoriaProduto()
+{
+    return _receitaContext.TbCategoriaProduto.AsNoTracking()
+        .ProjectTo<CategoriaProdutoDto>(Mapper.ConfigurationProvider);
+}
+
+public IQueryable<TipoFonteDto> GetTipoFonte(bool validaAcesso = false)
+{
+    var query = _receitaContext.TbTipoFonte.AsNoTracking()
+        .ProjectTo<TipoFonteDto>(Mapper.ConfigurationProvider);
+
+    if (validaAcesso)
+    {
+        var centroCustoComAcesso = GetCentroCusto(validaAcessoConsulta: true)
+            .Select(c => c.IdCentroCusto).ToList();
+        // filtro de autorização aplicado DEPOIS da projeção, ainda em IQueryable
+    }
+    return query;
+}
+```
+
+Note: a projeção acontece antes do filtro de autorização, e nada disso executa até alguém chamar
+`ToListAsync`. É isso que permite o DevExtreme paginar por cima sem carregar a tabela.
+
+---
+
+## 6. Nível 3 — `*FromMapAsync`: Request → Entity
+
+A contraparte na escrita:
+
+```csharp
+// Core/Repository.Common/Repositories/BaseWriteRepository.cs
+public async Task<TEntity> CreateFromMapAsync<T>(T dto, CancellationToken cancellationToken = default)
+    where T : class
+{
+    var entity = Mapper.Map<TEntity>(dto);
+
+    _ = await DbSet.AddAsync(entity, cancellationToken).ConfigureAwait(false);
+    _ = await Context.SaveChangesAsync(cancellationToken).ConfigureAwait(false);
+
+    return entity;
+}
+```
+
+O update é mais interessante — ele mapeia **sobre a entidade rastreada**, não cria outra:
+
+```csharp
+public async Task<TEntity> UpdateFromMapAsync<T>(
+    Expression<Func<TEntity, bool>> expression, T dto, CancellationToken cancellationToken = default)
+    where T : class
+{
+    var entity = await DbSet.SingleAsync(expression, cancellationToken);
+
+    Mapper.Map(dto, entity);          // ← sobrepõe no objeto que o EF já rastreia
+
+    if (typeof(TEntity).IsAssignableTo(typeof(IIdUsuEntity)))
+        ((IIdUsuEntity)entity).IdUsu = DomainConfig.CurrentUserId;
+
+    // propaga o usuário para as navegações filhas
+    var navigations = Context.Entry(entity).Navigations;
+    foreach (var navigationEntry in navigations)
+    {
+        if (navigationEntry.CurrentValue is IEnumerable<object> collection)
+        {
+            foreach (var item in collection)
+                if (item is IIdUsuEntity idUsuChild)
+                    idUsuChild.IdUsu = DomainConfig.CurrentUserId;
+        }
+        else if (navigationEntry.CurrentValue is IIdUsuEntity singleChild)
+        {
+            singleChild.IdUsu = DomainConfig.CurrentUserId;
+        }
+    }
+    // ... SaveChanges
+}
+```
+
+**Três coisas acontecem numa chamada:**
+
+1. Mapeamento `Request → Entity`
+2. Auditoria de autoria (`IdUsu`) na raiz **e nos filhos**
+3. Persistência
+
+Se o BSN fizesse `Mapper.Map<TbX>(request)` e depois `AddAsync`, o passo 2 seria esquecido metade das
+vezes. Empurrar para a base torna a auditoria não-opcional.
+
+**Onde é usado de verdade** (amostra):
+
+```
+SocietariosBsn.cs:133   await _tbColaboradorRepository.CreateFromMapAsync(request, ct);
+SocietariosBsn.cs:151   await _tbColaboradorRepository.UpdateFromMapAsync(x => x.IdColaborador == id, request, ct);
+SocietariosBsn.cs:361   await _tbContratoRepository.UpdateFromMapAsync(x => x.IdContrato == id, request, ct);
+SocietariosBsn.cs:454   await _tbAmortizacaoRepository.UpdateFromMapAsync(x => x.IdAmortizacao == id, request, ct);
+CrmCampanhaBsn.cs:143   await _tbCaracteristicaRepository.CreateFromMapAsync(request, ct);
+CrmCampanhaBsn.cs:276   await _tbCrmCampanhaConviteRepository.CreateFromMapAsync(request, ct);
+CrmCampanhaBsn.cs:312   await _tbCrmCampanhaConvidadoRepository.CreateFromMapAsync(request, ct);
+CapitalComprometidoBsn.cs:4373  var entity = await CapitalComprometidoTirRepository.CreateFromMapAsync(request, ct);
+```
+
+Sempre uma linha, sempre com a expressão de identificação inline no update.
+
+---
+
+## 7. Nível 4 — `IgnoreAllNull`: PATCH sem código de PATCH
+
+Este é o truque mais sutil, e resolve um problema real: **como fazer update parcial sem escrever
+`if (request.X != null) entity.X = request.X` trinta vezes?**
+
+O uso, no profile:
+
+```csharp
+CreateMap<CaracteristicaRequest, TbCaracteristica>()
+    .ForMember(d => d.IdTipoCaracteristica, o => o.Condition(s => s.IdTipoCaracteristica > 0))
+    .IgnoreAllNull();
+```
+
+A extension (`Common/Extensions/AnonymousObjectMutatorExtension.cs`):
+
+```csharp
+public static class AutoMapperExtension
+{
+    public static IMappingExpression<TSource, TDestination> IgnoreAllNull<TSource, TDestination>(
+        this IMappingExpression<TSource, TDestination> m)
+    {
+        var sourceProps      = typeof(TSource).GetProperties();
+        var destinationProps = typeof(TDestination).GetProperties();
+
+        // propriedades com o MESMO NOME nos dois lados
+        var commonProps = destinationProps
+            .Join(sourceProps, x => x.Name, y => y.Name, (x, y) => x)
+            .OrderBy(x => x.Name)
+            .ToList();
+
+        foreach (var prop in commonProps)
+            m.ForMember(prop.Name, x => x.MapFrom<IgnoreNullResolver<TSource, TDestination>, object>(prop.Name));
+
+        return m;
+    }
+}
+```
+
+E o resolver, de três linhas:
+
+```csharp
+// Common/AutoMapper/IgnoreNullResolver.cs
+public class IgnoreNullResolver<TSource, TDestination>
+    : IMemberValueResolver<TSource, TDestination, object, object>
+{
+    public object Resolve(TSource source, TDestination dest, object sourceMember, object destMember, ResolutionContext context)
+    {
+        return sourceMember ?? destMember;   // origem nula → preserva o valor atual do destino
+    }
+}
+```
+
+### O efeito prático
+
+```csharp
+// Estado no banco:
+// TbCaracteristica { Descricao = "Perfil Agressivo", IdTipoCaracteristica = 3 }
+
+// Cliente envia PUT com apenas:
+{ "descricao": "Perfil Moderado" }
+// → IdTipoCaracteristica chega como 0 (default de int)
+
+await _repo.UpdateFromMapAsync(x => x.IdCaracteristica == id, request, ct);
+
+// Resultado no banco:
+// TbCaracteristica { Descricao = "Perfil Moderado", IdTipoCaracteristica = 3 }  ← preservado
+```
+
+Dois mecanismos agindo juntos:
+
+- `IgnoreAllNull()` cobre os **tipos de referência** (`string`, `DateTime?`, `int?`) — nulo preserva
+- `.Condition(s => s.IdTipoCaracteristica > 0)` cobre o **value type não-nulável**, onde o "não informado"
+  chega como `0` e o resolver de nulo não pegaria
+
+**Isso é semântica de PATCH obtida com duas linhas de configuração.** Aplicado 17 vezes no profile,
+sempre no sentido `Request → Entity`, nunca no `Entity → Response`.
+
+Há também o irmão `IgnoreNullValueResolver`, que faz conversão de tipo além de preservar:
+
+```csharp
+public class IgnoreNullValueResolver<TSourceMember, TDestinationMember>
+    : IMemberValueResolver<object, object, TSourceMember, TDestinationMember>
+{
+    public TDestinationMember Resolve(object source, object dest, TSourceMember sourceMember, TDestinationMember destMember, ResolutionContext context)
+    {
+        if (sourceMember == null) return destMember;
+
+        return (TDestinationMember)Convert.ChangeType(sourceMember, typeof(TDestinationMember))!;
+    }
+}
+```
+
+⚠️ **Ressalva:** `IgnoreAllNull` casa propriedades **por nome, via reflexão, no boot**. Renomear um campo
+do `Request` sem renomear na entidade não quebra o build — o campo simplesmente para de ser mapeado,
+silenciosamente. É o custo dessa conveniência.
+
+---
+
+## 8. Nível 5 — `IMapper` como propriedade herdada
+
+Nas 52 vezes em que o BSN realmente mapeia, ele não injeta nada. `IMapper` vem de cima:
+
+```csharp
+// Application/BSN/Base/BaseBsn.cs
+protected IMapper Mapper => GetServiceSingleton<IMapper>();
+
+// Repository.Common/Repositories/BaseRepository.cs
+protected IMapper Mapper => GetServiceSingleton<IMapper>();
+
+// Domain/Validators/BaseValidator.cs — mesmo padrão para MessageDomain
+protected IMessageDomainService MessageDomain => GetService<IMessageDomainService>();
+```
+
+Compare os dois construtores possíveis de um BSN:
+
+```csharp
+// ❌ Com injeção explícita — Mapper polui a assinatura
+public CrmCampanhaBsn(
+    IMapper mapper,                              // ← ruído
+    ILogger<CrmCampanhaBsn> logger,              // ← ruído
+    ITbCaracteristicaRepository caracteristicaRepo,
+    ITbCrmCampanhaRepository campanhaRepo, ...)
+
+// ✅ Como está — só o que é de negócio
+public CrmCampanhaBsn(
+    IServiceProvider serviceProvider,
+    ITbCaracteristicaRepository tbCaracteristicaRepository,
+    ITbCrmCampanhaConviteRepository tbCrmCampanhaConviteRepository,
+    /* ... 7 repositórios ... */
+    IConfiguration configuration,
+    ILogger<CrmCampanhaBsn> logger) : base(serviceProvider)
+```
+
+O `Mapper` some da assinatura, do campo privado e da atribuição no construtor. Some da **leitura**.
+Daí a impressão de que o AutoMapper não está lá.
+
+O registro é singleton, criado uma vez no boot:
+
+```csharp
+// Core/IoC/DependencyInjectionExtencion.cs
+private static IServiceCollection ConfigureAutoMapperProfiles(this IServiceCollection services)
+{
+    var mapper = new MapperConfiguration(mc =>
+    {
+        mc.AddProfile(typeof(ApplicationMapperProfile));
+        mc.AddProfile(typeof(ApplicationImbarqMapperProfile));
+        mc.AddProfile(typeof(DomainMapperProfile));
+        mc.AddProfile(typeof(RepositoryCommonMapperProfile));
+    }).CreateMapper();
+
+    services.AddSingleton(mapper);
+
+    return services;
+}
+```
+
+Note que os profiles são listados **um a um**, não descobertos por varredura de assembly — ao contrário
+de praticamente todo o resto do DI deste projeto, que é por convenção. Profile novo exige adicionar aqui.
+
+---
+
+## 9. Quando o Map reaparece: os 52 casos
+
+`Mapper.Map` explícito volta quando `ProjectTo` **não pode** funcionar. Quatro situações:
+
+### 9.1 A origem não é `IQueryable`
+
+Dado que veio de API externa, cache ou memória não tem SQL para gerar:
+
+```csharp
+// ProtheusBsn.cs:1034 — objeto veio da API do Protheus
+var upsertDto = Mapper.Map<ContractProtheusDto>(contractApi);
+
+// XpWealthBSN.cs:298 — item veio da resposta HTTP da XP
+TbMovimentacaoCarteiraXP mov = Mapper.Map<MovCarteiraXPResponse, TbMovimentacaoCarteiraXP>(item);
+
+// CapitalComprometidoBsn.cs:3168 — lista veio do Redis, não do banco
+var cotacoesRedis = Mapper.Map<List<ViewAtivoCotacaoConsolidada>>(cotacoesLake);
+```
+
+### 9.2 Mapear sobre entidade existente (update)
+
+`ProjectTo` cria objeto novo; aqui é preciso sobrepor no rastreado:
+
+```csharp
+// IpsCallTaticoBsn.cs:49
+(callTatico, request) => Mapper.Map(request, callTatico)
+
+// ExtracaoDinamicaBsn.cs:75
+entity = Mapper.Map(request, entity);
+```
+
+É o mesmo que `UpdateFromMapAsync` faz, mas dentro de um fluxo mais complexo (sincronização de lista,
+por exemplo) que não cabe numa chamada de repositório.
+
+### 9.3 Depois de agregação em memória
+
+Quando o LINQ já foi materializado e agrupado, não há mais `IQueryable`:
+
+```csharp
+// IpsDashboardBsn.cs:890
+var ativo = Mapper.Map<ConsolidacaoClienteClasseSubClasseAtivoResponse>(gAtivo.First());
+
+// IpsDashboardBsn.cs:915
+var ativosConsolidacao = Mapper.Map<List<ConsolidacaoClienteClasseSubClasseAtivoResponse>>(resultConsolidacao);
+```
+
+### 9.4 Mapeamento com contexto em runtime
+
+Quando a conversão depende de um valor que só existe na hora:
+
+```csharp
+// InstrumentBsn.cs:1241
+var rawFromInstruments = Mapper.Map<List<RawB3Instruments>>(fullInstruments, opt => { /* items de contexto */ });
+```
+
+**A regra que emerge:** `ProjectTo` para tudo que sai do banco; `Map` só para o que já está em memória.
+
+---
+
+## 10. `CreateProjection` e `IncludeMembers`
+
+O `DomainMapperProfile` usa `CreateProjection` em vez de `CreateMap` — 9 vezes:
+
+```csharp
+private void MappersHeader()
+{
+    CreateProjection<Header, HeaderCarteiraDto>(MemberList.Destination)
+        .ForMember(d => d.IdHeader,    s => s.MapFrom(o => o.HeaderID))
+        .ForMember(d => d.IdArquivo,   s => s.MapFrom(o => o.ArquivoID))
+        .ForMember(d => d.IdCliente,   s => s.MapFrom(o => o.ClienteID))
+        .ForMember(d => d.CodCarteira, s => s.MapFrom(o => o.HeaderCarteira.codcart))
+        .ForMember(d => d.DtPosicao,   s => s.MapFrom(o => o.DtPosicao));
+}
+```
+
+**Diferença:** `CreateProjection` cria um mapa que **só funciona via `ProjectTo`**. Tentar `Map` com ele
+lança exceção. É uma declaração de intenção que o compilador/runtime cobra: *este mapeamento existe para
+virar SQL, não para converter objeto em memória.*
+
+E `IncludeMembers` achata navegação sem escrever `ForMember` para cada campo:
+
+```csharp
+private void MappersCliente()
+{
+    CreateProjection<TbCliente, ClDetalhesDto>()
+        .ForMember(d => d.DtCpu, o => o.Ignore())
+        .IncludeMembers(s => s.IdContaNavigation);     // ← puxa campos de TbConta
+
+    CreateProjection<TbConta, ClDetalhesDto>()
+        .ForMember(d => d.DtCpu, o => o.Ignore());
+
+    CreateProjection<TbMaster, ClDetalhesDto>()
+    // ...
+}
+```
+
+`TbCliente → ClDetalhesDto` herda automaticamente todo o mapeamento de `TbConta → ClDetalhesDto`. O EF
+gera o `JOIN` e traz só as colunas do DTO. Sem isso, seriam 20 linhas de `ForMember` navegando
+`s.IdContaNavigation.X`.
+
+Note também `MemberList.Destination`, que ativa validação: todo campo do destino precisa ter origem.
+Aparece só em alguns mapas — voltarei a isso na seção 12.
+
+---
+
+## 11. A organização do profile
+
+`ApplicationMapperProfile.cs` tem 957 linhas, mas o construtor é uma lista:
+
+```csharp
+public ApplicationMapperProfile()
+{
+    MappingsIps();
+    MappingsPosicaoConsolidada();
+    CapitalComprometido();
+    AtivoCotacao();
+    AtivoProduto();
+    Boletas();
+    TradesRecon();
+    Carrying();
+    AtivoDto();
+    Societario();
+    Cliente();
+    ExtracaoDinamica();
+    RankingConsolidacao();
+    CRM();
+    PosicaoConsolidadaExtendida();
+    B3Instruments();
+    CustomerProtheus();
+    ContractProtheus();
+    ReceitasCategoriaProduto();
+    ReceitasTipoFonte();
+}
+```
+
+Cada método privado agrupa os `CreateMap` de um domínio. É a mesma técnica de legibilidade do resto do
+projeto: **a estrutura substitui o comentário**. Você abre o arquivo e o índice está no construtor.
+
+E os mapeamentos carregam regra de conversão real, não só renomeação:
+
+```csharp
+CreateMap<PosicaoConsolidada, Position>()
+    // Constantes / defaults
+    .ForMember(d => d.Source,        o => o.MapFrom(_ => SourcePosition.XML))
+    .ForMember(d => d.DescKeyHeader, o => o.MapFrom(_ => "Id_Header"))
+    .ForMember(d => d.CodMoeda,      o => o.MapFrom(_ => "BRL"))
+    .ForMember(d => d.VlrSaldoBrutoDm1, o => o.MapFrom(_ => 0m))
+
+    // Casts e mapeamentos 1:1
+    .ForMember(d => d.DtPosicao, o => o.MapFrom(s => s.DtPosicao))
+    .ForMember(d => d.IdCliente, o => o.MapFrom(s => s.ClienteID))
+    .ForMember(d => d.CdCliente, o => o.MapFrom(s => s.NrCpfCnpj.ToString())); // long → string, EF traduz
+```
+
+Enum traduzido para label dentro do próprio mapa:
+
+```csharp
+CreateMap<ConsolidacaoClienteClasseSubClasseAtivoDto, ConsolidacaoClienteClasseSubClasseAtivoResponse>()
+    .ForMember(x => x.TpOrigem, o => o.MapFrom((s, d) =>
+    {
+        return s.TpOrigem switch
+        {
+            ETpOrigem.ONSHORE      => "Onshore",
+            ETpOrigem.OFFSHORE     => "Offshore",
+            ETpOrigem.CONSOLIDACAO => "Consolidação",
+            _                      => "Outros"
+        };
+    }));
+```
+
+⚠️ Isso funciona em `Map`, mas **não traduz para SQL** — se este mapa for usado em `ProjectTo`, o EF
+não sabe converter o `switch`. É um mapa de memória disfarçado de mapa comum. Um `CreateProjection`
+aqui teria falhado alto, em vez de silenciosamente forçar avaliação em memória.
+
+E `ReverseMap()` (7 usos) para pares que trafegam nas duas direções:
+
+```csharp
+CreateMap<TbePosicaoConsolidada, PosicaoConsolidadaDto>().ReverseMap();
+CreateMap<TbeAumConsolidado, ConsolidatedPositionResponse>().ReverseMap();
+CreateMap<PosicaoConsolidadaDto, PosicaoConsolidadaAtivoResponse>().ReverseMap();
+```
+
+---
+
+## 12. O preço da invisibilidade
+
+Ser invisível tem custo, e vale saber qual antes de copiar.
+
+### 12.1 Não há `AssertConfigurationIsValid()`
+
+Não existe teste nem startup task chamando:
+
+```csharp
+mapper.ConfigurationProvider.AssertConfigurationIsValid();
+```
+
+**Consequência:** campo novo no `Response` que ninguém mapeou fica `null`/`0` silenciosamente. Não quebra
+o build, não quebra o request, só some do relatório. Em sistema financeiro, um `VlrProvisao` que vira
+zero por falta de mapeamento é erro caro e mudo.
+
+`MemberList.Destination` existe em alguns mapas (`CreateMap<Posicao, TbPosicaoConsolidada>(MemberList.Destination)`)
+e resolveria — mas não é o padrão.
+
+**Correção de uma linha:** adicionar a validação numa `IStartupTask`. Falha no boot, não em produção.
+
+### 12.2 `IgnoreAllNull` casa por nome via reflexão
+
+Renomear `Descricao` para `DescricaoCaracteristica` no `Request` sem renomear na entidade: o build passa,
+o campo para de ser gravado. Nenhum aviso.
+
+### 12.3 `.Condition(s => s.X > 0)` é gambiarra necessária
+
+O `0` como sentinela de "não informado" quebra em qualquer campo onde zero é valor legítimo
+(percentual, saldo, quantidade). O ideal seria `int?` no `Request` — aí `IgnoreAllNull` sozinho resolve.
+
+### 12.4 Profiles registrados manualmente
+
+Enquanto BSNs, repositórios, options e validators entram no DI por convenção, os 4 profiles são listados
+à mão. Profile novo que ninguém adicionou = mapa que não existe em runtime = `AutoMapperMappingException`
+no primeiro request. Inconsistente com o resto do projeto.
+
+### 12.5 Mapa com lógica que não vira SQL
+
+O `switch` de `ETpOrigem` mostrado acima só funciona em memória. Se usado com `ProjectTo`, o EF ou lança
+ou avalia no cliente. `CreateProjection` protegeria contra isso, mas é usado em 17 de 92 mapas.
+
+---
+
+## 13. Receita para replicar
+
+O que copiar, em ordem de retorno sobre esforço:
+
+**1. `ProjectTo` na base de leitura** — o maior ganho, sozinho justifica o padrão:
+
+```csharp
+protected IQueryable<TResult> FindAllQuerableProjectTo<TResult>(Expression<Func<TEntity, bool>> filter = null)
+    => FindAllQuerable(filter, asNoTracking: true).ProjectTo<TResult>(Mapper.ConfigurationProvider);
+
+public Task<List<TResult>> FindAllProjectToAsync<TResult>(Expression<Func<TEntity, bool>> filter = null, CancellationToken ct = default)
+    => FindAllQuerableProjectTo<TResult>(filter).ToListAsync(ct);
+```
+
+**2. `*FromMapAsync` na base de escrita**, com auditoria embutida — garante que ninguém esqueça o `CreatedBy`.
+
+**3. `IMapper` como propriedade da base**, não parâmetro de construtor.
+
+**4. `IgnoreAllNull` + `IgnoreNullResolver`** — 15 linhas que dão semântica de PATCH.
+Use `int?`/`decimal?` no `Request` e você nem precisa do `.Condition`.
+
+**5. Profile com construtor-índice** — um método privado por domínio.
+
+**6. `CreateProjection` sempre que o mapa for só para leitura de banco.** É documentação executável:
+falha alto se alguém tentar usar em memória.
+
+**E o que o Prisma não fez — faça:**
+
+```csharp
+// numa IStartupTask ou num teste
+public class MapperValidationStartupTask : IStartupTask
+{
+    private readonly IMapper _mapper;
+
+    public Task ExecuteAsync(CancellationToken ct = default)
+    {
+        _mapper.ConfigurationProvider.AssertConfigurationIsValid();
+        return Task.CompletedTask;
+    }
+}
+```
+
+```csharp
+// e registre profiles por convenção, como o resto do DI
+var profiles = AppDomain.CurrentDomain.GetAssemblies()
+    .SelectMany(a => a.GetTypes())
+    .Where(t => t.IsSubclassOf(typeof(Profile)) && !t.IsAbstract);
+
+var mapper = new MapperConfiguration(mc =>
+{
+    foreach (var p in profiles) mc.AddProfile(p);
+}).CreateMapper();
+```
+
+---
+
+## Resumo em uma frase
+
+> O AutoMapper é invisível no Prisma porque **cada conversão foi empurrada para o ponto mais baixo
+> possível**: leitura vira `ProjectTo` dentro do repositório (e portanto vira SQL), escrita vira
+> `*FromMapAsync` dentro do repositório (junto com a auditoria), update parcial vira `IgnoreAllNull`
+> dentro do profile, e o `IMapper` vira propriedade herdada da classe base.
+>
+> Sobra, na controller e no BSN, apenas a intenção: `InsereCaracteristicaAsync(request)`.
